@@ -9,10 +9,7 @@
 
 App::App()
 {
-
-
 	myTimer = myTimerManager.CreateTimer();
-
 }
 
 App::~App()
@@ -31,7 +28,6 @@ void App::Init()
 
 bool App::update()
 {
-
 	Renderer::GetInstance()->TextRender( "DO NOT WANT", Vector2f(700, 200), ALIGN_RIGHT );
 
 	myStateStack.Update();

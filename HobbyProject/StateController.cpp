@@ -2,6 +2,7 @@
 #include "stateController.h"
 
 #include "gameState.h"
+#include "stateSTack.h"
 
 StateController::StateController()
 {
@@ -17,10 +18,12 @@ StateController::~StateController()
 
 void StateController::Init()
 {
+	myGameState = new GameState();
 	myGameState->InitZero();
 }
 
 void StateController::NewGame()
 {
-	
+	myGameState->Init();
+	myStateStack->Push( myGameState );
 }

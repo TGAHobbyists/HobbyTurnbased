@@ -2,8 +2,7 @@
 #define _GAME_STATE_H_
 
 #include "state.h"
-#include "avatar.h"
-#include "location.h"
+#include "Terraingrid.h"
 
 class GameState: public State
 {
@@ -19,7 +18,6 @@ public:
 	bool Render();
 
 private:
-	Avatar myPlayerAvatar;
-	Location myCurrentLocation;
+	TerrainGrid myTerrainGrid;
 };
 #endif//_GAME_STATE_H_

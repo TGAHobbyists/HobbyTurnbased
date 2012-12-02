@@ -3,6 +3,8 @@
 
 #include "hgesprite.h"
 #include "hgeFont.h"
+#include "sprite.h"
+
 FontRenderMessage::FontRenderMessage()
 :myText("")
 ,myPosition( Vector2f(0.f,0.f) )
@@ -12,6 +14,15 @@ FontRenderMessage::FontRenderMessage( std::string aText, Vector2f aPosition, int
 :myText( aText )
 ,myPosition( aPosition )
 ,myAlignment( anAlignment )
+{}
+
+SpriteRenderMessage::SpriteRenderMessage()
+:myPosition( Vector2f(0.f,0.f) )
+,mySprite( NULL )
+{}
+SpriteRenderMessage::SpriteRenderMessage( Vector2f aPosition, hgeSprite* aSprite )
+:myPosition( aPosition )
+,mySprite( aSprite )
 {}
 
 Renderer* Renderer::ourInstance = NULL;
@@ -25,6 +36,7 @@ Renderer::Renderer( HGE* aHGE )
 
 	myFont= new hgeFont("font1.fnt");
 	myFontRenderMessages.Init( 10, 30 );
+	mySpriteRenderMessages.Init( 100, 50 );
 }
 
 Renderer::~Renderer()
@@ -55,10 +67,26 @@ void Renderer::TextRender( std::string aText, Vector2f aPosition, int anAlignmen
 	myFontRenderMessages.Add( FontRenderMessage( aText, aPosition, anAlignment ) );
 }
 
+void Renderer::SpriteRender( Sprite* aSprite )
+{
+	Vector2f position;
+	aSprite->GetPosition( position );
+	mySpriteRenderMessages.Add( SpriteRenderMessage( position, aSprite->GetRawSprite() ) );
+}
+
 void Renderer::Render()
 {
 	myHGE->Gfx_BeginScene();	
 	myHGE->Gfx_Clear(0);
+
+	for( int index = 0; index < mySpriteRenderMessages.Count(); ++index )
+	{
+		mySpriteRenderMessages[index].mySprite->RenderEx( 
+			mySpriteRenderMessages[index].myPosition.myX,
+			mySpriteRenderMessages[index].myPosition.myY,
+			0.f
+			);
+	}
 
 	for( int index = 0; index < myFontRenderMessages.Count(); ++index )
 	{
@@ -67,14 +95,19 @@ void Renderer::Render()
 			myFontRenderMessages[index].myAlignment,
 			myFontRenderMessages[index].myText.c_str()
 			);
-
 	}
 
-	myFont->printf( 400, 300, HGETEXT_LEFT, "Hello pebkac" );
+
+
 
 	myHGE->Gfx_EndScene();
 
 	myFontRenderMessages.RemoveAll();
+	mySpriteRenderMessages.RemoveAll();
 }
-
+HTEXTURE Renderer::CreateTexture( std::string aFilePath )
+{
+	HTEXTURE texture = myHGE->Texture_Load( aFilePath.c_str() );
+	return texture;
+}
 

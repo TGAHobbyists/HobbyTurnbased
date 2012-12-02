@@ -16,6 +16,8 @@ public:
 	void Update();
 	void Render();
 
+	void Push( State* aState );
+
 
 private:
 	CU::GrowingArray<State*> myStack;

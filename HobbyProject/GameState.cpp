@@ -17,8 +17,7 @@ void GameState::InitZero()
 
 void GameState::Init()
 {
-	myPlayerAvatar.Init();
-	myCurrentLocation.Init();
+	myTerrainGrid.Init();
 }
 
 bool GameState::Update()
@@ -28,7 +27,7 @@ bool GameState::Update()
 
 bool GameState::Render()
 {
-	myPlayerAvatar.Render();
-	myCurrentLocation.Render();
+	myTerrainGrid.Render();
+
 	return true;
 }

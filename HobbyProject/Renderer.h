@@ -8,6 +8,7 @@
 
 #include "hgeFont.h"
 class hgeSprite;
+class Sprite;
 
 enum TextAlignments
 {
@@ -26,6 +27,14 @@ struct FontRenderMessage
 	int				myAlignment;
 };
 
+struct SpriteRenderMessage
+{
+	SpriteRenderMessage();
+	SpriteRenderMessage( Vector2f aPosition, hgeSprite* aSprite );
+	Vector2f myPosition;
+	hgeSprite* mySprite; //<---- FIX, I MEAN WHAT THE DICKS
+};
+
 
 class Renderer
 {
@@ -37,8 +46,11 @@ public:
 	static Renderer*	GetInstance();
 
 	void TextRender( std::string aText, Vector2f aPosition, int anAlignment );
+	void SpriteRender( Sprite* aSprite );
 
 	void Render();
+
+	HTEXTURE CreateTexture( std::string aFilePath );
 
 private:
 	Renderer( HGE* aHGE );
@@ -50,6 +62,7 @@ private:
 	hgeSprite* mySprite;
 
 	CU::GrowingArray< FontRenderMessage > myFontRenderMessages;
+	CU::GrowingArray< SpriteRenderMessage > mySpriteRenderMessages;
 
 	
 

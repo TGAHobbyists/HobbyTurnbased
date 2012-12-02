@@ -3,6 +3,7 @@
 #include "hge.h"
 #include "App.h"
 #include "Renderer.h"
+#include "root.h"
 
 HGE* HGE_Init()
 {
@@ -48,9 +49,11 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 	MSG windowsMessage;
 
 	Renderer::Create( hgeEngine );
+	Root::Create();
 
 	App application;
 
+	application.Init();
 	for(;;)
 	{
 		// check for messages

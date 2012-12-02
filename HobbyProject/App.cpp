@@ -19,6 +19,7 @@ App::~App()
 
 void App::Init()
 {
+	myStateStack.Init();
 	StateController* controller = new StateController( &myStateStack );
 	controller->Init();
 	Root::GetInstance()->AttachStateController( controller );

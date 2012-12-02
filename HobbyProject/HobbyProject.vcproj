@@ -251,6 +251,18 @@
 				RelativePath=".\Renderer.h"
 				>
 			</File>
+			<Filter
+				Name="Sprite"
+				>
+				<File
+					RelativePath=".\Sprite.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Sprite.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="States"
@@ -291,6 +303,42 @@
 					</File>
 					<File
 						RelativePath=".\Location.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="TerrainGrid"
+					>
+					<File
+						RelativePath=".\TerrainGrid.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\TerrainGrid.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Tile"
+					>
+					<File
+						RelativePath=".\Tile.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Tile.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Unit"
+					>
+					<File
+						RelativePath=".\Unit.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Unit.h"
 						>
 					</File>
 				</Filter>

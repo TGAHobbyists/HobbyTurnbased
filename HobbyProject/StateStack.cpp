@@ -36,3 +36,7 @@ void StateStack::Render()
 		}
 	}
 }
+void StateStack::Push( State* aState )
+{
+	myStack.Add( aState );
+}

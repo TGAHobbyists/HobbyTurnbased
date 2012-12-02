@@ -14,7 +14,7 @@ public:
 	void GetPosition( Vector2f& outPosition );
 	void SetPosition( const Vector2f& aNewPosition );
 
-	void SetTexture( HTEXTURE aNewTexture );
+	void SetTexture( HTEXTURE aNewTexture, Vector2f& aSize );
 	hgeSprite* GetRawSprite() { return mySprite; }
 
 private:

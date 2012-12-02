@@ -19,10 +19,10 @@ void Sprite::SetPosition( const Vector2f& aNewPosition )
 	myPosition = aNewPosition;
 }
 
-void Sprite::SetTexture( HTEXTURE aNewTexture )
+void Sprite::SetTexture( HTEXTURE aNewTexture, Vector2f& aSize )
 {
 	if( mySprite == NULL )
 	{
-		mySprite = new hgeSprite( aNewTexture, myPosition.myX, myPosition.myY, 16.f, 16.f );
+		mySprite = new hgeSprite( aNewTexture, myPosition.myX, myPosition.myY, aSize.x, aSize.y );
 	}
 }

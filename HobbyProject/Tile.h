@@ -11,6 +11,7 @@ public:
 
 	int myDurability;
 	int myMaxDurability;
+	bool myIsSolid;
 	Sprite mySprite;
 private:
 

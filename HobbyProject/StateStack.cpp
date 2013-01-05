@@ -16,11 +16,11 @@ void StateStack::Init()
 {
 	myStack.Init(5,2);
 }
-void StateStack::Update()
+void StateStack::Update( float aDeltaTime )
 {
 	for( int index = myStack.Count() - 1; index >= 0; --index )
 	{
-		if( myStack[index]->Update() == false )
+		if( myStack[index]->Update( aDeltaTime ) == false )
 		{
 			break;
 		}

@@ -15,7 +15,7 @@ public:
 	void InitZero();
 	void Init();
 
-	bool Update();
+	bool Update( float aDeltaTime );
 
 	bool Render();
 

@@ -9,7 +9,7 @@ public:
 	virtual ~State()
 	{}
 
-	virtual bool Update() = 0;
+	virtual bool Update( float aDeltaTime ) = 0;
 
 	virtual bool Render() = 0;
 

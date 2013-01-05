@@ -29,9 +29,11 @@ void App::Init()
 
 bool App::update()
 {
+	myTimerManager.Update();
+	float deltaTime = myTimer->GetDeltaTime();
 	Renderer::GetInstance()->TextRender( "DO NOT WANT", Vector2f(700, 200), ALIGN_RIGHT );
 
-	myStateStack.Update();
+	myStateStack.Update( deltaTime );
 
 	render();
 	return true;

@@ -12,7 +12,7 @@ public:
 
 	void Init();
 
-	void Update( Collision* aCollisionChecker );
+	void Update( float aDeltaTime, Collision* aCollisionChecker );
 	void Render();
 private:
 	Sprite mySprite;

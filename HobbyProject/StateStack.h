@@ -13,7 +13,7 @@ public:
 
 	void Init();
 
-	void Update();
+	void Update( float aDeltaTime );
 	void Render();
 
 	void Push( State* aState );

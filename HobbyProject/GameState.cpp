@@ -22,9 +22,9 @@ void GameState::Init()
 	myCollision.Init( &myTerrainGrid );
 }
 
-bool GameState::Update()
+bool GameState::Update( float aDeltaTime )
 {
-	myTestUnit.Update( &myCollision );
+	myTestUnit.Update( aDeltaTime, &myCollision );
 	return true;
 }
 

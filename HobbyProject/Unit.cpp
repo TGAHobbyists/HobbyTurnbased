@@ -18,9 +18,9 @@ void Unit::Init()
 	myOffset = Vector2f( mySprite.GetRawSprite()->GetWidth()/2, mySprite.GetRawSprite()->GetHeight() );
 }
 
-void Unit::Update( Collision* aCollisionChecker )
+void Unit::Update( float aDeltaTime, Collision* aCollisionChecker )
 {
-	Vector2f change( 0.f, 0.5f );
+	Vector2f change( 0.f, 19.42f * aDeltaTime );
 	Vector2f actualPosition = myPosition;
 	if( aCollisionChecker->IsValidMove( myPosition, change ) )
 	{

@@ -3,6 +3,10 @@
 
 
 class StateController;
+namespace Input
+{
+	class InputWrapper;
+};
 
 class Root
 {
@@ -13,13 +17,17 @@ public:
 	static Root* GetInstance();
 
 	void AttachStateController( StateController* aStateController );
-	StateController* GetStateController();
+	StateController* GetStateController() const;
+
+	void AttachInputWrapper( Input::InputWrapper* anInputWrapper );
+	Input::InputWrapper* GetInputWrapper() const;
 
 private:
 	Root();
 	static Root* ourInstance;
 
 	StateController* myStateController;
+	Input::InputWrapper* myInputWrapper;
 };
 
 #endif//_ROOT_SINGLETON_H_

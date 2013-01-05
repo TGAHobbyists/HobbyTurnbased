@@ -4,6 +4,7 @@
 #include "App.h"
 #include "Renderer.h"
 #include "root.h"
+#include "inputwrapper.h"
 
 HGE* HGE_Init()
 {
@@ -50,6 +51,11 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 
 	Renderer::Create( hgeEngine );
 	Root::Create();
+
+	Input::InputWrapper input;
+	input.Initialize( hgeEngine->System_GetState( HGE_HWND ), Vector2f() );
+
+	Root::GetInstance()->AttachInputWrapper( &input );
 
 	App application;
 

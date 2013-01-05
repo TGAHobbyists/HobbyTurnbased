@@ -13,6 +13,8 @@ public:
 
 	virtual bool Render() = 0;
 
+	virtual bool HandleInput() = 0;
+
 protected:
 
 };

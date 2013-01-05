@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)Thirdparty/HGE/include&quot;;&quot;$(SolutionDir)Library/CommonUtilities&quot;;&quot;$(SolutionDir)Library/DL_Debug&quot;;&quot;$(SolutionDir)Library/FI_File&quot;;&quot;$(SolutionDir)Library/InputWrapper&quot;;&quot;$(SolutionDir)Library/Timer&quot;;&quot;$(SolutionDir)Library/tinyxml&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Thirdparty/HGE/include&quot;;&quot;$(SolutionDir)Library/CommonUtilities&quot;;&quot;$(SolutionDir)Library/DL_Debug&quot;;&quot;$(SolutionDir)Library/FI_File&quot;;&quot;$(SolutionDir)Library/InputWrapper&quot;;&quot;$(SolutionDir)Library/Timer&quot;;&quot;$(SolutionDir)Library/tinyxml&quot;;&quot;$(SolutionDir)Thirdparty\DirectInput&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -180,16 +180,24 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\App.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\App.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Main.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -365,6 +373,18 @@
 			</File>
 			<File
 				RelativePath=".\Root.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="App"
+			>
+			<File
+				RelativePath=".\App.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\App.h"
 				>
 			</File>
 		</Filter>

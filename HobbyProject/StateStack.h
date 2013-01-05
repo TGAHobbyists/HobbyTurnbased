@@ -15,6 +15,7 @@ public:
 
 	void Update( float aDeltaTime );
 	void Render();
+	void HandleInput();
 
 	void Push( State* aState );
 

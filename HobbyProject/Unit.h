@@ -14,10 +14,18 @@ public:
 
 	void Update( float aDeltaTime, Collision* aCollisionChecker );
 	void Render();
+
+	void StartMoveRight();
+	void StopMoveRight();
+	void StartMoveLeft();
+	void StopMoveLeft();
+	void Jump();
+	bool IsInAir() const;
 private:
 	Sprite mySprite;
 	Vector2f myPosition;
 	Vector2f myOffset;
+	Vector2f myMovement;
 };
 
 

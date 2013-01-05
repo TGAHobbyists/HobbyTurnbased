@@ -31,8 +31,16 @@ void Root::AttachStateController( StateController* aStateController )
 {
 	myStateController = aStateController;
 }
-StateController* Root::GetStateController()
+StateController* Root::GetStateController() const
 {
 	return myStateController;
 }
 
+void Root::AttachInputWrapper( Input::InputWrapper* anInputWrapper )
+{
+	myInputWrapper = anInputWrapper;
+}
+Input::InputWrapper* Root::GetInputWrapper() const
+{
+	return myInputWrapper;
+}

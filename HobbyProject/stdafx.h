@@ -13,6 +13,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include "CU_CommonMacros.h"
+#include "Root.h"
 
 
 // TODO: reference additional headers your program requires here

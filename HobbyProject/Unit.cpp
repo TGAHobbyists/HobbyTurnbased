@@ -32,3 +32,4 @@ void Unit::Render()
 {
 	Renderer::GetInstance()->SpriteRender( &mySprite );
 }
+

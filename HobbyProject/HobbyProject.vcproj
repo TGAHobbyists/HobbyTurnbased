@@ -388,6 +388,14 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="InputHandler"
+			>
+			<File
+				RelativePath=".\InputHandler.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

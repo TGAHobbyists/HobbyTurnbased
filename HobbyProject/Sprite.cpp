@@ -25,4 +25,9 @@ void Sprite::SetTexture( HTEXTURE aNewTexture, Vector2f& aSize )
 	{
 		mySprite = new hgeSprite( aNewTexture, myPosition.myX, myPosition.myY, aSize.x, aSize.y );
 	}
+	else
+	{
+		SAFE_DELETE( mySprite );
+		mySprite = new hgeSprite( aNewTexture, myPosition.myX, myPosition.myY, aSize.x, aSize.y );
+	}
 }

@@ -29,6 +29,8 @@ void TerrainGrid::Init()
 		pos = Vector2f( ourTileSize * (index % ourTileGridSizeX), ourTileSize * (index / ourTileGridSizeX));
 		myTiles[index].mySprite.SetPosition( pos );
 		myTiles[index].myIsSolid = false;
+		myTiles[index].myDurability = 0;
+		myTiles[index].myMaxDurability = 0;
 	}
 	for( index; index < ourTileGridSizeX * ourTileGridSizeY; ++index )
 	{
@@ -37,6 +39,9 @@ void TerrainGrid::Init()
 		pos = Vector2f( ourTileSize * (index % ourTileGridSizeX), ourTileSize * (index / ourTileGridSizeX));
 		myTiles[index].mySprite.SetPosition( pos );
 		myTiles[index].myIsSolid = true;
+		myTiles[index].myMaxDurability = 1;
+		myTiles[index].myDurability = myTiles[index].myMaxDurability;
+		
 	}
 }
 void TerrainGrid::Render()
@@ -46,14 +51,48 @@ void TerrainGrid::Render()
 		Renderer::GetInstance()->SpriteRender( &myTiles[index].mySprite );
 	}
 }
-Tile& TerrainGrid::GetTileAt( Vector2f& aPositionInGrid )
+
+Tile& TerrainGrid::GetTileAt( const Vector2f& aPositionInGrid )
 {
 	return myTiles[ GetIndexFromPosition( aPositionInGrid ) ];
 }
-int TerrainGrid::GetIndexFromPosition( Vector2f& aPosition ) const
+
+Tile& TerrainGrid::GetTileRightOf( Tile& aTile )
+{
+	Vector2f tilePosition;
+	aTile.mySprite.GetPosition( tilePosition );
+	tilePosition.myX += ourTileSize;
+	return myTiles[ GetIndexFromPosition( tilePosition ) ];
+}
+
+Tile& TerrainGrid::GetTileAbove( Tile& aTile )
+{
+	Vector2f tilePosition;
+	aTile.mySprite.GetPosition( tilePosition );
+	tilePosition.myY -= ourTileSize;
+	return myTiles[ GetIndexFromPosition( tilePosition ) ];
+}
+
+Tile& TerrainGrid::GetTileLeftOf( Tile& aTile )
+{
+	Vector2f tilePosition;
+	aTile.mySprite.GetPosition( tilePosition );
+	tilePosition.myX -= ourTileSize;
+	return myTiles[ GetIndexFromPosition( tilePosition ) ];
+}
+
+Tile& TerrainGrid::GetTileBelow( Tile& aTile )
+{
+	Vector2f tilePosition;
+	aTile.mySprite.GetPosition( tilePosition );
+	tilePosition.myY += ourTileSize;
+	return myTiles[ GetIndexFromPosition( tilePosition ) ];
+}
+
+int TerrainGrid::GetIndexFromPosition( const Vector2f& aPosition ) const
 {
 	int x = static_cast<int>(aPosition.myX / ourTileSize);
 	int y = static_cast<int>(aPosition.myY / ourTileSize);
 	int index = x + (y * ourTileGridSizeX);
-	return CU::Macro::Clamp( index, 0, ourTileGridSizeX * ourTileGridSizeY );;
+	return CU::Macro::Clamp( index, 0, (ourTileGridSizeX * ourTileGridSizeY)-1 );;
 }

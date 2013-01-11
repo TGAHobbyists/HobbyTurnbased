@@ -21,6 +21,7 @@ public:
 	void StopMoveLeft();
 	void Jump();
 	bool IsInAir() const;
+	void DEBUGDigDown( Collision* aCollision );
 private:
 	Sprite mySprite;
 	Vector2f myPosition;

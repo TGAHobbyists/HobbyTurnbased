@@ -75,6 +75,13 @@ bool GameState::HandleInput()
 					myTestUnit.Jump();
 				}
 			}
+			if( events[index].myKey == DIK_DOWN )
+			{
+				if( events[index].myInputAction == Input::Press )
+				{
+					myTestUnit.DEBUGDigDown( &myCollision );
+				}
+			}
 		}
 	}
 	return true;

@@ -14,14 +14,19 @@ public:
 
 	void Render();
 
-	Tile& GetTileAt( Vector2f& aPositionInGrid );
+	Tile& GetTileAt( const Vector2f& aPositionInGrid );
+
+	Tile& GetTileRightOf( Tile& aTile );
+	Tile& GetTileAbove( Tile& aTile );
+	Tile& GetTileLeftOf( Tile& aTile );
+	Tile& GetTileBelow( Tile& aTile );
 	
+	static const float ourTileSize;
 
 private:
 	static const int ourTileGridSizeX = 100;
 	static const int ourTileGridSizeY = 100;
-	static const float ourTileSize;
-	int GetIndexFromPosition( Vector2f& aPosition ) const;
+	int GetIndexFromPosition( const Vector2f& aPosition ) const;
 	//CU::GrowingArray<Chuck> chunk has tiles!
 	CU::GrowingArray< Tile > myTiles;
 

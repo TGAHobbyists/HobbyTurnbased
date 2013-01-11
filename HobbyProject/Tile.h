@@ -9,6 +9,8 @@ public:
 	Tile();
 	~Tile();
 
+	void Strike( int aDamage );
+
 	int myDurability;
 	int myMaxDurability;
 	bool myIsSolid;

@@ -4,6 +4,8 @@
 #include "renderer.h"
 #include "collision.h"
 
+#include "tile.h"
+
 Unit::Unit()
 {
 }
@@ -23,17 +25,17 @@ void Unit::Update( float aDeltaTime, Collision* aCollisionChecker )
 {
 	myMovement.myY += (9.82f) * 40 * aDeltaTime;
 	Vector2f change = Vector2f( 0, myMovement.myY * aDeltaTime );
-	Vector2f actualPosition = myPosition;
-	if( !aCollisionChecker->IsValidMove( myPosition, change ) )
+	if( !aCollisionChecker->IsValidMoveFat( myPosition, change, 7.f ) )
 	{
 		myMovement.myY = 0;
 	}
 	change = myMovement * aDeltaTime;
-	if( aCollisionChecker->IsValidMove( myPosition, change ) )
+	if( !aCollisionChecker->IsValidMoveFat( myPosition, change, 7.f ) )
 	{
-		myPosition += change;
-		mySprite.SetPosition( myPosition - myOffset );
+		change.myX = 0;
 	}
+	myPosition += change;
+	mySprite.SetPosition( myPosition - myOffset );
 }
 void Unit::Render()
 {
@@ -63,4 +65,9 @@ void Unit::Jump()
 bool Unit::IsInAir() const
 {
 	return myMovement.myY != 0;
+}
+void Unit::DEBUGDigDown( Collision* aCollision )
+{
+	Vector2f direction( 0, 15 );
+	aCollision->GetTileInDirection( myPosition, direction ).Strike( 1 );
 }

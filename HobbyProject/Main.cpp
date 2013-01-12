@@ -11,6 +11,7 @@ HGE* HGE_Init()
 	HGE* hgeInstance=NULL;
 
 	hgeInstance=hgeCreate(HGE_VERSION);
+	assert(hgeInstance != NULL);
 
 	hgeInstance->System_SetState(HGE_LOGFILE, "HGE_Error.log");
 	hgeInstance->System_SetState(HGE_TITLE, "HobbyProject");
@@ -19,7 +20,7 @@ HGE* HGE_Init()
 	hgeInstance->System_SetState(HGE_SCREENHEIGHT, 600);
 	hgeInstance->System_SetState(HGE_SCREENBPP, 32);
 	hgeInstance->System_SetState(HGE_ZBUFFER, true);
-	if(!hgeInstance->System_Initiate())
+	assert((!hgeInstance->System_Initiate()))
 	{
 		hgeInstance->System_Shutdown();
 		hgeInstance->Release();

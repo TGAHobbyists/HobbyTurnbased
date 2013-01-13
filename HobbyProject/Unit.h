@@ -16,6 +16,9 @@ public:
 	void Update( float aDeltaTime, Collision* aCollisionChecker );
 	void Render();
 
+	Vector2f GetMiddlePosition() const { return myCollisionObject.GetMiddlePosition(); }
+	Vector2f GetPosition() const { return myCollisionObject.myPosition; }
+
 	void StartMoveRight();
 	void StopMoveRight();
 	void StartMoveLeft();
@@ -23,11 +26,13 @@ public:
 	void Jump();
 	bool IsInAir() const;
 	void DEBUGDigDown( Collision* aCollision );
+	void DigInDirection( Vector2f aDirection, Collision* aCollision );
 private:
 	Sprite mySprite;
 	//Vector2f myOffset;
 	Vector2f myMovement;
 	AABB2D myCollisionObject;
+	Sprite debugsprite;
 };
 
 

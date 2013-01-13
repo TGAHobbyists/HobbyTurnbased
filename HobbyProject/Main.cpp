@@ -88,6 +88,7 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 
 	}
 
+	input.Destroy();
 	HGE_Shutdown(hgeEngine);
 
 	// Clean up and shutdown

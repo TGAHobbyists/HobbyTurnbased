@@ -2,6 +2,7 @@
 #include "gamestate.h"
 #include "InputWrapper.h"
 #include "renderer.h"
+#include "unit.h"
 
 GameState::GameState()
 {
@@ -19,6 +20,7 @@ void GameState::InitZero()
 
 void GameState::Init()
 {
+	myMouseDown = false;
 	myTerrainGrid.Init();
 	myTestUnit.Init();
 	myCollision.Init( &myTerrainGrid );
@@ -28,6 +30,8 @@ void GameState::Init()
 
 bool GameState::Update( float aDeltaTime )
 {
+	if( myMouseDown )
+		myTestUnit.DigInDirection( myCursorPosition - myTestUnit.GetMiddlePosition(), &myCollision );
 	myTestUnit.Update( aDeltaTime, &myCollision );
 	HandleInput();
 	return true;
@@ -47,8 +51,6 @@ bool GameState::HandleInput()
 	Input::InputWrapper* input = Root::GetInstance()->GetInputWrapper();
 	const CU::GrowingArray<Input::InputEvent>& events = input->GetInputBuffer();
 
-	float test = Root::GetInstance()->myResolutionWidth;
-	test;
 	static Vector2f lastMouseMovement;
 	myCursorPosition += input->GetMouseMovement() - lastMouseMovement;
 	lastMouseMovement = input->GetMouseMovement();
@@ -56,6 +58,16 @@ bool GameState::HandleInput()
 	myCursorPosition.myY = CLAMP(0.f, myCursorPosition.myY, Root::GetInstance()->myResolutionHeight -1.f);
 	for( int index = 0; index < events.Count(); ++index )
 	{
+		if( events[index].myInputType == Input::Mouse )
+		{
+			if( events[index].myMouseButton == Input::LeftMouseButton )
+			{
+				if( events[index].myInputAction == Input::Press )
+					myMouseDown = true;
+				if( events[index].myInputAction == Input::Release )
+					myMouseDown = false;
+			}
+		}
 		if( events[index].myInputType == Input::Keyboard )
 		{
 			if( events[index].myKey == DIK_LEFT )

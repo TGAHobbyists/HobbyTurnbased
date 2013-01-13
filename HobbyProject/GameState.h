@@ -22,6 +22,7 @@ public:
 	bool HandleInput();
 
 private:
+	bool myMouseDown;
 	Vector2f	myCursorPosition;
 	Sprite		myCursorSprite;
 	TerrainGrid	myTerrainGrid;

@@ -18,9 +18,11 @@ void Unit::Init()
 	myCollisionObject.myPosition = Vector2f( 25,5);
 	Vector2f unitSize = Vector2f(16,32);
 	mySprite.SetTexture( Renderer::GetInstance()->CreateTexture( "Sprites//Unit//Unit.png" ), unitSize );
-	//myOffset = Vector2f( mySprite.GetRawSprite()->GetWidth()/2, mySprite.GetRawSprite()->GetHeight() );,
 	myCollisionObject.myMinOffset = Vector2f( mySprite.GetRawSprite()->GetWidth() * -0.5f, mySprite.GetRawSprite()->GetHeight() * -1.f );
 	myCollisionObject.myMaxOffset = Vector2f( mySprite.GetRawSprite()->GetWidth() * 0.5f, 0 );
+
+	Vector2f debufsize(32,32);
+	debugsprite.SetTexture( Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" ), debufsize );
 }
 
 void Unit::Update( float aDeltaTime, Collision* aCollisionChecker )
@@ -42,6 +44,7 @@ void Unit::Update( float aDeltaTime, Collision* aCollisionChecker )
 void Unit::Render()
 {
 	Renderer::GetInstance()->SpriteRender( &mySprite );
+	Renderer::GetInstance()->SpriteRender( &debugsprite );
 }
 void Unit::StartMoveRight()
 {
@@ -73,3 +76,10 @@ void Unit::DEBUGDigDown( Collision* aCollision )
 	Vector2f direction( 0, 15 );
 	aCollision->GetTileInDirection( myCollisionObject.myPosition, direction ).Strike( 1 );
 }
+void Unit::DigInDirection( Vector2f aDirection, Collision* aCollision )
+{
+	Vector2f direction = aDirection.Normalize() * 23.f;
+	aCollision->GetTileInDirection( myCollisionObject.GetMiddlePosition(), direction ).Strike( 1 );
+	//debugsprite.SetPosition( myCollisionObject.GetMiddlePosition() + aDirection.Normalize() * 23.f );
+}
+

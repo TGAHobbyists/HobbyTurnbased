@@ -61,6 +61,8 @@ CU::GrowingArray< Tile > Collision::GetTilesInRange( const Vector2f& aPosition, 
 }
 Tile& Collision::GetTileInDirection( const Vector2f& aPosition, const Vector2f& aDirection )
 {
+	//assert( aDirection.Length2() < 64.f && "Derp" )
 	Vector2f newPosition( aPosition + aDirection );
 	return myTerrain->GetTileAt( newPosition );
+
 }

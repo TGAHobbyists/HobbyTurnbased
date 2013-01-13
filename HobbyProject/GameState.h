@@ -22,8 +22,10 @@ public:
 	bool HandleInput();
 
 private:
-	TerrainGrid myTerrainGrid;
-	Collision myCollision;
-	Unit myTestUnit;
+	Vector2f	myCursorPosition;
+	Sprite		myCursorSprite;
+	TerrainGrid	myTerrainGrid;
+	Collision	myCollision;
+	Unit		myTestUnit;
 };
 #endif//_GAME_STATE_H_

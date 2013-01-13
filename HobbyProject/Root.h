@@ -22,9 +22,14 @@ public:
 	void AttachInputWrapper( Input::InputWrapper* anInputWrapper );
 	Input::InputWrapper* GetInputWrapper() const;
 
+	float myResolutionWidth;
+	float myResolutionHeight;
+
 private:
 	Root();
 	static Root* ourInstance;
+
+
 
 	StateController* myStateController;
 	Input::InputWrapper* myInputWrapper;

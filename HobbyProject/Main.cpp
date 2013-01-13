@@ -6,7 +6,8 @@
 #include "root.h"
 #include "inputwrapper.h"
 
-HGE* HGE_Init()
+
+HGE* HGE_Init( float aScreenWidth, float aScreenHeight )
 {
 	HGE* hgeInstance=NULL;
 
@@ -16,15 +17,16 @@ HGE* HGE_Init()
 	hgeInstance->System_SetState(HGE_LOGFILE, "HGE_Error.log");
 	hgeInstance->System_SetState(HGE_TITLE, "HobbyProject");
 	hgeInstance->System_SetState(HGE_WINDOWED, true);
-	hgeInstance->System_SetState(HGE_SCREENWIDTH, 800);
-	hgeInstance->System_SetState(HGE_SCREENHEIGHT, 600);
+	hgeInstance->System_SetState(HGE_SCREENWIDTH, (int)aScreenWidth);
+	hgeInstance->System_SetState(HGE_SCREENHEIGHT, (int)aScreenHeight);
 	hgeInstance->System_SetState(HGE_SCREENBPP, 32);
 	hgeInstance->System_SetState(HGE_ZBUFFER, true);
-	assert((!hgeInstance->System_Initiate()))
+	if( !hgeInstance->System_Initiate() )
 	{
 		hgeInstance->System_Shutdown();
 		hgeInstance->Release();
 		hgeInstance=NULL;
+		assert( 0 && "hge initiate failed" );
 	}
 
 	return hgeInstance;
@@ -41,7 +43,9 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 {
 	SetCurrentDirectory("..\\Bin");
 
-	HGE* hgeEngine=HGE_Init();
+	const Vector2f resolution( 800.f, 600.f );
+
+	HGE* hgeEngine=HGE_Init( resolution.myX, resolution.myY );
 
 	if(hgeEngine==NULL)
 	{
@@ -52,6 +56,9 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 
 	Renderer::Create( hgeEngine );
 	Root::Create();
+
+	Root::GetInstance()->myResolutionWidth = resolution.myX;
+	Root::GetInstance()->myResolutionHeight = resolution.myY;
 
 	Input::InputWrapper input;
 	input.Initialize( hgeEngine->System_GetState( HGE_HWND ), Vector2f() );

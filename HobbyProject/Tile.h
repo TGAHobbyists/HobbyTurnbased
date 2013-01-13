@@ -2,6 +2,7 @@
 #define _TILE_H_
 
 #include "sprite.h"
+#include "aabb2d.h"
 
 class Tile
 {
@@ -15,6 +16,7 @@ public:
 	int myMaxDurability;
 	bool myIsSolid;
 	Sprite mySprite;
+	AABB2D myBox;
 private:
 
 };

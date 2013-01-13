@@ -28,6 +28,8 @@ void TerrainGrid::Init()
 		myTiles[index].mySprite.SetTexture( 0, tileSize );
 		pos = Vector2f( ourTileSize * (index % ourTileGridSizeX), ourTileSize * (index / ourTileGridSizeX));
 		myTiles[index].mySprite.SetPosition( pos );
+		myTiles[index].myBox.myPosition = pos;
+		myTiles[index].myBox.myMaxOffset = Vector2f(16.f,16.f);
 		myTiles[index].myIsSolid = false;
 		myTiles[index].myDurability = 0;
 		myTiles[index].myMaxDurability = 0;
@@ -38,6 +40,8 @@ void TerrainGrid::Init()
 		myTiles[index].mySprite.SetTexture( Renderer::GetInstance()->CreateTexture( "Sprites//Terrain//Grass.bmp" ), tileSize );
 		pos = Vector2f( ourTileSize * (index % ourTileGridSizeX), ourTileSize * (index / ourTileGridSizeX));
 		myTiles[index].mySprite.SetPosition( pos );
+		myTiles[index].myBox.myPosition = pos;
+		myTiles[index].myBox.myMaxOffset = Vector2f(16.f,16.f);
 		myTiles[index].myIsSolid = true;
 		myTiles[index].myMaxDurability = 1;
 		myTiles[index].myDurability = myTiles[index].myMaxDurability;

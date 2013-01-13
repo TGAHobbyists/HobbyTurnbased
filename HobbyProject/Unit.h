@@ -2,6 +2,7 @@
 #define _UNIT_H_
 
 #include "sprite.h"
+#include "AABB2D.h"
 class Collision;
 
 class Unit
@@ -24,9 +25,9 @@ public:
 	void DEBUGDigDown( Collision* aCollision );
 private:
 	Sprite mySprite;
-	Vector2f myPosition;
-	Vector2f myOffset;
+	//Vector2f myOffset;
 	Vector2f myMovement;
+	AABB2D myCollisionObject;
 };
 
 

@@ -396,6 +396,22 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Collision"
+			>
+			<File
+				RelativePath=".\AABB2D.h"
+				>
+			</File>
+			<File
+				RelativePath=".\CollisionFunctions.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\CollisionObject.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

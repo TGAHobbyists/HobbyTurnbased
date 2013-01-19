@@ -44,3 +44,12 @@ Input::InputWrapper* Root::GetInputWrapper() const
 {
 	return myInputWrapper;
 }
+
+void Root::AttachMutexManager( MutexManager* aMutexManager )
+{
+	myMutexManager = aMutexManager;
+}
+MutexManager* Root::GetMutexManager() const
+{
+	return myMutexManager;
+}

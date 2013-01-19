@@ -7,6 +7,7 @@ namespace Input
 {
 	class InputWrapper;
 };
+class MutexManager;
 
 class Root
 {
@@ -22,6 +23,9 @@ public:
 	void AttachInputWrapper( Input::InputWrapper* anInputWrapper );
 	Input::InputWrapper* GetInputWrapper() const;
 
+	void AttachMutexManager( MutexManager* aMutexManager );
+	MutexManager* GetMutexManager() const;
+
 	float myResolutionWidth;
 	float myResolutionHeight;
 
@@ -33,6 +37,7 @@ private:
 
 	StateController* myStateController;
 	Input::InputWrapper* myInputWrapper;
+	MutexManager* myMutexManager;
 };
 
 #endif//_ROOT_SINGLETON_H_

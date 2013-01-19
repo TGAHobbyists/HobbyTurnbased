@@ -5,6 +5,8 @@
 #include "Renderer.h"
 #include "root.h"
 #include "inputwrapper.h"
+#include "mutexmanager.h"
+#include "mutex.h"
 
 
 HGE* HGE_Init( float aScreenWidth, float aScreenHeight )
@@ -65,6 +67,11 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 
 	Root::GetInstance()->AttachInputWrapper( &input );
 
+	MutexManager mutex;
+	Root::GetInstance()->AttachMutexManager( &mutex );
+
+	
+
 	App application;
 
 	application.Init();
@@ -87,7 +94,6 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 		}
 
 	}
-
 	input.Destroy();
 	HGE_Shutdown(hgeEngine);
 

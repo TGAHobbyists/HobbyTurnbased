@@ -19,6 +19,7 @@ public:
 
 	CU::GrowingArray< Tile > GetTilesInRange( const Vector2f& aPosition, float aHeight );
 	Tile& GetTileInDirection( const Vector2f& aPosition, const Vector2f& aDirection );
+	Tile& GetTileAt( const Vector2f& aPosition );
 
 private:
 	TerrainGrid* myTerrain;

@@ -66,3 +66,9 @@ Tile& Collision::GetTileInDirection( const Vector2f& aPosition, const Vector2f& 
 	return myTerrain->GetTileAt( newPosition );
 
 }
+
+Tile& Collision::GetTileAt( const Vector2f& aPosition )
+{
+	return myTerrain->GetTileAt( aPosition );
+}
+

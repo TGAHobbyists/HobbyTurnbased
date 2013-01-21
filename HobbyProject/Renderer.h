@@ -35,6 +35,13 @@ struct SpriteRenderMessage
 	hgeSprite* mySprite; //<---- FIX, I MEAN WHAT THE DICKS
 };
 
+struct LineRenderMessage
+{
+	LineRenderMessage();
+	LineRenderMessage( Vector2f aPosition, Vector2f aEndPosition );
+	Vector2f myPosition;
+	Vector2f myEndPosition;
+};
 
 class Renderer
 {
@@ -47,7 +54,7 @@ public:
 
 	void TextRender( std::string aText, Vector2f aPosition, int anAlignment );
 	void SpriteRender( Sprite* aSprite );
-
+	void LineRender( const Vector2f& aStartPosition, const Vector2f& anEndPosition );
 	void Render();
 
 	HTEXTURE CreateTexture( std::string aFilePath );
@@ -63,6 +70,7 @@ private:
 
 	CU::GrowingArray< FontRenderMessage > myFontRenderMessages;
 	CU::GrowingArray< SpriteRenderMessage > mySpriteRenderMessages;
+	CU::GrowingArray< LineRenderMessage > myLineRenderMessages;
 
 	
 

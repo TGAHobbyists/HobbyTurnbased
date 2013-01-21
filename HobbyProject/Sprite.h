@@ -16,6 +16,7 @@ public:
 
 	void SetTexture( HTEXTURE aNewTexture, Vector2f& aSize );
 	hgeSprite* GetRawSprite() { return mySprite; }
+	void SetSize( const Vector2f& aSize );
 
 private:
 	hgeSprite* mySprite;

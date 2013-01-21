@@ -5,6 +5,7 @@
 #include "Terraingrid.h"
 #include "unit.h"
 #include "collision.h"
+#include "Selection.h"
 
 class GameState: public State
 {
@@ -28,5 +29,6 @@ private:
 	TerrainGrid	myTerrainGrid;
 	Collision	myCollision;
 	Unit		myTestUnit;
+	Selection	mySelection;
 };
 #endif//_GAME_STATE_H_

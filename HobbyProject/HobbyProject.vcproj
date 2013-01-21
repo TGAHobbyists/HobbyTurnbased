@@ -362,6 +362,18 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="Selection"
+					>
+					<File
+						RelativePath=".\Selection.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Selection.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter

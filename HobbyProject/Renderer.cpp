@@ -25,6 +25,14 @@ SpriteRenderMessage::SpriteRenderMessage( Vector2f aPosition, hgeSprite* aSprite
 ,mySprite( aSprite )
 {}
 
+LineRenderMessage::LineRenderMessage()
+{}
+
+LineRenderMessage::LineRenderMessage( Vector2f aPosition, Vector2f aEndPosition )
+: myPosition( aPosition )
+, myEndPosition( aEndPosition )
+{}
+
 Renderer* Renderer::ourInstance = NULL;
 
 Renderer::Renderer( HGE* aHGE )
@@ -37,6 +45,7 @@ Renderer::Renderer( HGE* aHGE )
 	myFont= new hgeFont("font1.fnt");
 	myFontRenderMessages.Init( 10, 30 );
 	mySpriteRenderMessages.Init( 100, 50 );
+	myLineRenderMessages.Init( 40, 20 );
 }
 
 Renderer::~Renderer()
@@ -74,6 +83,11 @@ void Renderer::SpriteRender( Sprite* aSprite )
 	mySpriteRenderMessages.Add( SpriteRenderMessage( position, aSprite->GetRawSprite() ) );
 }
 
+void Renderer::LineRender( const Vector2f& aStartPosition, const Vector2f& anEndPosition )
+{
+	myLineRenderMessages.Add( LineRenderMessage( aStartPosition, anEndPosition ) );
+}
+
 void Renderer::Render()
 {
 	myHGE->Gfx_BeginScene();	
@@ -97,13 +111,21 @@ void Renderer::Render()
 			);
 	}
 
-
+	for( int index = 0; index < myLineRenderMessages.Count(); ++index )
+	{
+		myHGE->Gfx_RenderLine( myLineRenderMessages[index].myPosition.myX,
+			myLineRenderMessages[index].myPosition.myY,
+			myLineRenderMessages[index].myEndPosition.myX,
+			myLineRenderMessages[index].myEndPosition.myY, 
+			DWORD( 0xFFFF00FF ) );
+	}
 
 
 	myHGE->Gfx_EndScene();
 
 	myFontRenderMessages.RemoveAll();
 	mySpriteRenderMessages.RemoveAll();
+	myLineRenderMessages.RemoveAll();
 }
 HTEXTURE Renderer::CreateTexture( std::string aFilePath )
 {

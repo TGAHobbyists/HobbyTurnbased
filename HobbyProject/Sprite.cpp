@@ -31,3 +31,7 @@ void Sprite::SetTexture( HTEXTURE aNewTexture, Vector2f& aSize )
 		mySprite = new hgeSprite( aNewTexture, myPosition.myX, myPosition.myY, aSize.x, aSize.y );
 	}
 }
+void Sprite::SetSize( const Vector2f& aSize )
+{
+	mySprite->SetTextureRect( myPosition.myX, myPosition.myY, aSize.myX, aSize.myY );
+}

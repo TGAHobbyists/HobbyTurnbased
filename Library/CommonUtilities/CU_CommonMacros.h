@@ -75,6 +75,14 @@ namespace CommonUtilities
 		}
 
 		template <typename T>
+		inline void Swap( T& aLeftSwap, T& aRightSwap )
+		{
+			T temp = aRightSwap;
+			aLeftSwap = aRightSwap;
+			aRightSwap = temp;
+		}
+
+		template <typename T>
 		inline T Min(const T& aValue1, const T& aValue2)
 		{
 			return aValue1 < aValue2 ? aValue1 : aValue2;

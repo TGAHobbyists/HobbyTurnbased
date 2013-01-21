@@ -26,14 +26,16 @@ void GameState::Init()
 	myCollision.Init( &myTerrainGrid );
 	Vector2f cursorSize( 32,32 );
 	myCursorSprite.SetTexture( Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" ), cursorSize );
+	mySelection.Init();
 }
 
 bool GameState::Update( float aDeltaTime )
 {
 	if( myMouseDown )
-		myTestUnit.DigInDirection( myCursorPosition - myTestUnit.GetMiddlePosition(), &myCollision );
+		mySelection.SetEnd( myCursorPosition );
 	myTestUnit.Update( aDeltaTime, &myCollision );
 	HandleInput();
+	mySelection.Update( aDeltaTime );
 	return true;
 }
 
@@ -42,6 +44,7 @@ bool GameState::Render()
 	myTerrainGrid.Render();
 	myTestUnit.Render();
 	myCursorSprite.SetPosition( myCursorPosition );
+	mySelection.Render();
 	Renderer::GetInstance()->SpriteRender( &myCursorSprite );
 
 	return true;
@@ -63,9 +66,15 @@ bool GameState::HandleInput()
 			if( events[index].myMouseButton == Input::LeftMouseButton )
 			{
 				if( events[index].myInputAction == Input::Press )
+				{
 					myMouseDown = true;
+					mySelection.SetAnchor( myCursorPosition );
+				}
 				if( events[index].myInputAction == Input::Release )
+				{
+					mySelection.FinalizeSelection( &myCollision );
 					myMouseDown = false;
+				}
 			}
 		}
 		if( events[index].myInputType == Input::Keyboard )

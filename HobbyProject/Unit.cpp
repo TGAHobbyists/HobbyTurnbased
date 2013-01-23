@@ -16,13 +16,12 @@ void Unit::Init()
 {
 	myMovement.myY = 19.42f;
 	myCollisionObject.myPosition = Vector2f( 25,5);
-	Vector2f unitSize = Vector2f(16,32);
-	mySprite.SetTexture( Renderer::GetInstance()->CreateTexture( "Sprites//Unit//Unit.png" ), unitSize );
-	myCollisionObject.myMinOffset = Vector2f( mySprite.GetRawSprite()->GetWidth() * -0.5f, mySprite.GetRawSprite()->GetHeight() * -1.f );
-	myCollisionObject.myMaxOffset = Vector2f( mySprite.GetRawSprite()->GetWidth() * 0.5f, 0 );
+	mySprite = Renderer::GetInstance()->CreateTexture( "Sprites//Unit//Unit.png" );
+	myCollisionObject.myMinOffset = Vector2f( mySprite.GetSize().x * -0.5f, mySprite.GetSize().y * -1.f );
+	myCollisionObject.myMaxOffset = Vector2f( mySprite.GetSize().x * 0.5f, 0 );
 
 	Vector2f debufsize(32,32);
-	debugsprite.SetTexture( Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" ), debufsize );
+	debugsprite = Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" );
 }
 
 void Unit::Update( float aDeltaTime, Collision* aCollisionChecker )
@@ -44,7 +43,7 @@ void Unit::Update( float aDeltaTime, Collision* aCollisionChecker )
 void Unit::Render()
 {
 	Renderer::GetInstance()->SpriteRender( &mySprite );
-	Renderer::GetInstance()->SpriteRender( &debugsprite );
+	//Renderer::GetInstance()->SpriteRender( &debugsprite );
 }
 void Unit::StartMoveRight()
 {

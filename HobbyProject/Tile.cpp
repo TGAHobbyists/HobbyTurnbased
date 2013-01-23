@@ -17,6 +17,7 @@ void Tile::Strike( int aDamage )
 	if( myDurability <= 0 )
 		myIsSolid = false;
 	Vector2f size( 16, 16 );
-	mySprite.SetTexture( 0, size );
+	mySprite = -1;
+	mySprite.SetSize( size );
 }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="HobbyProject"
 	ProjectGUID="{72B702BE-111E-4798-900E-AD1DDA030FE0}"
 	RootNamespace="HobbyProject"
@@ -247,6 +247,14 @@
 		<Filter
 			Name="SpriteContainer"
 			>
+			<File
+				RelativePath=".\SpriteContainer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SpriteContainer.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Renderer"

@@ -40,7 +40,8 @@ void Selection::SetEnd( const Vector2f& anEndPosition )
 void Selection::Init()
 {
 	Vector2f tempSize( 16.f, 16.f );
-	mySprite.SetTexture( Renderer::GetInstance()->CreateTexture( "Sprites/Terrain/Rock.bmp" ), tempSize );
+	mySprite = Renderer::GetInstance()->CreateTexture( "Sprites/Terrain/Rock.bmp" );
+	mySprite.SetSize( tempSize );
 }
 
 static const float flashTimer = 1.1f;

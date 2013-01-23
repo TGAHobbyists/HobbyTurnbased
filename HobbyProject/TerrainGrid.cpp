@@ -25,7 +25,7 @@ void TerrainGrid::Init()
 	for( index; index < ourTileGridSizeX * 10; ++index )
 	{
 		myTiles.Add( Tile() );
-		myTiles[index].mySprite.SetTexture( 0, tileSize );
+		myTiles[index].mySprite.SetSize( tileSize );
 		pos = Vector2f( ourTileSize * (index % ourTileGridSizeX), ourTileSize * (index / ourTileGridSizeX));
 		myTiles[index].mySprite.SetPosition( pos );
 		myTiles[index].myBox.myPosition = pos;
@@ -37,7 +37,8 @@ void TerrainGrid::Init()
 	for( index; index < ourTileGridSizeX * ourTileGridSizeY; ++index )
 	{
 		myTiles.Add( Tile() );
-		myTiles[index].mySprite.SetTexture( Renderer::GetInstance()->CreateTexture( "Sprites//Terrain//Grass.bmp" ), tileSize );
+		myTiles[index].mySprite = Renderer::GetInstance()->CreateTexture( "Sprites//Terrain//Grass.bmp" );
+		myTiles[index].mySprite.SetSize( tileSize );
 		pos = Vector2f( ourTileSize * (index % ourTileGridSizeX), ourTileSize * (index / ourTileGridSizeX));
 		myTiles[index].mySprite.SetPosition( pos );
 		myTiles[index].myBox.myPosition = pos;

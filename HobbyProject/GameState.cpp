@@ -25,7 +25,7 @@ void GameState::Init()
 	myTestUnit.Init();
 	myCollision.Init( &myTerrainGrid );
 	Vector2f cursorSize( 32,32 );
-	myCursorSprite.SetTexture( Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" ), cursorSize );
+	myCursorSprite = Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" );
 	mySelection.Init();
 }
 

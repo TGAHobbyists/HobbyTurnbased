@@ -1,13 +1,23 @@
 #include "stdafx.h"
 #include "sprite.h"
+#include "renderer.h"
 
 Sprite::Sprite()
 {
-	mySprite = NULL;
+	mySpriteIndex = -1;
 }
 Sprite::~Sprite()
 {
 
+}
+
+Sprite Sprite::operator =(int aSpriteIndex)
+{
+	mySpriteIndex = aSpriteIndex;
+	myPosition = myPosition;
+	mySize = Renderer::GetInstance()->GetSpriteSize( mySpriteIndex );
+
+	return ( *this );
 }
 
 void Sprite::GetPosition( Vector2f& outPosition )
@@ -19,19 +29,18 @@ void Sprite::SetPosition( const Vector2f& aNewPosition )
 	myPosition = aNewPosition;
 }
 
-void Sprite::SetTexture( HTEXTURE aNewTexture, Vector2f& aSize )
-{
-	if( mySprite == NULL )
-	{
-		mySprite = new hgeSprite( aNewTexture, myPosition.myX, myPosition.myY, aSize.x, aSize.y );
-	}
-	else
-	{
-		SAFE_DELETE( mySprite );
-		mySprite = new hgeSprite( aNewTexture, myPosition.myX, myPosition.myY, aSize.x, aSize.y );
-	}
-}
 void Sprite::SetSize( const Vector2f& aSize )
 {
-	mySprite->SetTextureRect( myPosition.myX, myPosition.myY, aSize.myX, aSize.myY );
+	mySize = aSize;
 }
+
+const Vector2f& Sprite::GetSize()
+{
+	return mySize;
+}
+
+int Sprite::GetSpriteIndex()
+{
+	return mySpriteIndex;
+}
+

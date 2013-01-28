@@ -24,9 +24,10 @@ SpriteRenderMessage::SpriteRenderMessage()
 ,mySpriteIndex( -1 )
 {}
 
-SpriteRenderMessage::SpriteRenderMessage( Vector2f aPosition, int aSpriteIndex )
+SpriteRenderMessage::SpriteRenderMessage( Vector2f aPosition, int aSpriteIndex, Vector2f aSize )
 :myPosition( aPosition )
 ,mySpriteIndex( aSpriteIndex )
+,mySize( aSize )
 {}
 
 LineRenderMessage::LineRenderMessage()
@@ -50,6 +51,7 @@ Renderer::Renderer( HGE* aHGE )
 	mySprite->SetBlendMode(0);
 
 	myFont= new hgeFont("font1.fnt");
+	myFont->SetColor( 0xFF000000 );
 	myFontRenderMessages.Init( 10, 30 );
 	mySpriteRenderMessages.Init( 100, 50 );
 	myLineRenderMessages.Init( 40, 20 );
@@ -87,7 +89,7 @@ void Renderer::SpriteRender( Sprite* aSprite )
 {
 	Vector2f position;
 	aSprite->GetPosition( position );
-	mySpriteRenderMessages.Add( SpriteRenderMessage( position, aSprite->GetSpriteIndex() ) );
+	mySpriteRenderMessages.Add( SpriteRenderMessage( position, aSprite->GetSpriteIndex(), aSprite->GetSize() ) );
 }
 
 void Renderer::LineRender( const Vector2f& aStartPosition, const Vector2f& anEndPosition )
@@ -112,18 +114,17 @@ void Renderer::Render()
 		else
 			continue;
 			
-		if( spriteIndex == 5 || spriteIndex == 3 )
-		{
-			int apa = spriteIndex;
-			spriteIndex = apa;
-		}
-			
-		Vector2f pos = mySpriteRenderMessages[index].myPosition;
+		float xScale = mySpriteRenderMessages[index].mySize.myX / sprite->GetWidth();
+		float yScale = mySpriteRenderMessages[index].mySize.myY / sprite->GetHeight();
 
+		if( xScale != 1.f )
+			sprite = sprite;
 		if( sprite != NULL )
 			sprite->RenderEx( mySpriteRenderMessages[index].myPosition.myX,
 								mySpriteRenderMessages[index].myPosition.myY,
-								0.f
+								0.f,
+								xScale,
+								yScale
 								);
 	}
 

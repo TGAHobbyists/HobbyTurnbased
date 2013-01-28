@@ -3,9 +3,9 @@
 #include "renderer.h"
 
 Sprite::Sprite()
-{
-	mySpriteIndex = -1;
-}
+: mySpriteIndex( -1 )
+{}
+
 Sprite::~Sprite()
 {
 

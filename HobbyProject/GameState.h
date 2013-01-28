@@ -10,6 +10,12 @@
 class GameState: public State
 {
 public:
+	enum InputModes
+	{
+		DIGGING,
+		DESIGNATING_DIGGING,
+		END_OF_INPUTMODES
+	};
 	GameState();
 	~GameState();
 
@@ -24,6 +30,8 @@ public:
 
 private:
 	bool myMouseDown;
+	int myInputMode;
+	CU::GrowingArray< std::string > myInputModes;
 	Vector2f	myCursorPosition;
 	Sprite		myCursorSprite;
 	TerrainGrid	myTerrainGrid;

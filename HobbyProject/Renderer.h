@@ -31,8 +31,9 @@ struct FontRenderMessage
 struct SpriteRenderMessage
 {
 	SpriteRenderMessage();
-	SpriteRenderMessage( Vector2f aPosition, int aSpriteIndex );
+	SpriteRenderMessage( Vector2f aPosition, int aSpriteIndex, Vector2f aSize );
 	Vector2f myPosition;
+	Vector2f mySize;
 	int mySpriteIndex;
 };
 

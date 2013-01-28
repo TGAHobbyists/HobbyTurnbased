@@ -27,12 +27,21 @@ void GameState::Init()
 	Vector2f cursorSize( 32,32 );
 	myCursorSprite = Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" );
 	mySelection.Init();
+	myInputMode = 0;
+	myInputModes.Init(2,2);
+	myInputModes.Add( std::string( "Digging" ) );
+	myInputModes.Add( std::string( "Designate digging" ) );
 }
 
 bool GameState::Update( float aDeltaTime )
 {
 	if( myMouseDown )
-		mySelection.SetEnd( myCursorPosition );
+	{
+		if( myInputMode == 0 )
+			myTestUnit.DigInDirection( myCursorPosition - myTestUnit.GetPosition(), &myCollision );
+		else if( myInputMode == 1 )
+			mySelection.SetEnd( myCursorPosition );
+	}
 	myTestUnit.Update( aDeltaTime, &myCollision );
 	HandleInput();
 	mySelection.Update( aDeltaTime );
@@ -41,6 +50,7 @@ bool GameState::Update( float aDeltaTime )
 
 bool GameState::Render()
 {
+	Renderer::GetInstance()->TextRender( myInputModes[ myInputMode ], Vector2f( 30, 40 ), ALIGN_LEFT );
 	myTerrainGrid.Render();
 	myTestUnit.Render();
 	myCursorSprite.SetPosition( myCursorPosition );
@@ -68,11 +78,13 @@ bool GameState::HandleInput()
 				if( events[index].myInputAction == Input::Press )
 				{
 					myMouseDown = true;
-					mySelection.SetAnchor( myCursorPosition );
+					if( myInputMode == 1 )
+						mySelection.SetAnchor( myCursorPosition );
 				}
 				if( events[index].myInputAction == Input::Release )
 				{
-					mySelection.FinalizeSelection( &myCollision );
+					if( myInputMode == 1 )
+						mySelection.FinalizeSelection( &myCollision );
 					myMouseDown = false;
 				}
 			}
@@ -113,6 +125,15 @@ bool GameState::HandleInput()
 				if( events[index].myInputAction == Input::Press )
 				{
 					myTestUnit.DEBUGDigDown( &myCollision );
+				}
+			}
+			if( events[index].myKey == DIK_D )
+			{
+				if( events[index].myInputAction == Input::Release )
+				{
+					++myInputMode;
+					if( myInputMode >= END_OF_INPUTMODES )
+						myInputMode = 0;
 				}
 			}
 		}

@@ -30,6 +30,7 @@ Selection::~Selection()
 void Selection::SetAnchor( const Vector2f& anAnchorPosition )
 {
 	myMinPosition = anAnchorPosition;
+	myMaxPosition = anAnchorPosition;
 	myHasSelection = false;
 }
 
@@ -40,7 +41,7 @@ void Selection::SetEnd( const Vector2f& anEndPosition )
 void Selection::Init()
 {
 	Vector2f tempSize( 16.f, 16.f );
-	mySprite = Renderer::GetInstance()->CreateTexture( "Sprites/Terrain/Rock.bmp" );
+	mySprite = Renderer::GetInstance()->CreateTexture( "Sprites//Terrain//Rock.bmp" );
 	mySprite.SetSize( tempSize );
 }
 

@@ -10,7 +10,8 @@ GameState::GameState()
 }
 GameState::~GameState()
 {
-
+	Collision::Destroy();
+	myCollision = NULL;
 }
 
 void GameState::InitZero()
@@ -23,7 +24,9 @@ void GameState::Init()
 	myMouseDown = false;
 	myTerrainGrid.Init();
 	myTestUnit.Init();
-	myCollision.Init( &myTerrainGrid );
+	Collision::Create();
+	myCollision = Collision::GetInstance();
+	myCollision->Init( &myTerrainGrid );
 	Vector2f cursorSize( 32,32 );
 	myCursorSprite = Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" );
 	mySelection.Init();
@@ -31,7 +34,7 @@ void GameState::Init()
 
 bool GameState::Update( float aDeltaTime )
 {
-	myTestUnit.Update( aDeltaTime, &myCollision );
+	myTestUnit.Update( aDeltaTime, myCollision );
 	HandleInput();
 	mySelection.Update( aDeltaTime );
 	return true;
@@ -44,6 +47,7 @@ bool GameState::Render()
 	myCursorSprite.SetPosition( myCursorPosition );
 	mySelection.Render();
 	Renderer::GetInstance()->SpriteRender( &myCursorSprite );
+	myCollision->RenderDebug();
 
 	return true;
 }

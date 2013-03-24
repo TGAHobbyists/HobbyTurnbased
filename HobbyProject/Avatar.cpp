@@ -22,6 +22,8 @@ void Avatar::Init()
 
 	Vector2f debufsize(32,32);
 	debugsprite = Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" );
+	myAttackComponent.Init();
+	myAttackComponent.AddAttack();
 }
 
 void Avatar::Update( float aDeltaTime, Collision* aCollisionChecker )
@@ -37,12 +39,18 @@ void Avatar::Update( float aDeltaTime, Collision* aCollisionChecker )
 	{
 		change.myX = 0;
 	}
+	if( change.myX > 0 )
+		myLastMovementDirection = 1.0f;
+	else if( change.myX < 0 )
+		myLastMovementDirection = -1.f;
 	myCollisionObject.myPosition += change;
 	mySprite.SetPosition( myCollisionObject.GetMinPosition() );
+	myAttackComponent.Update( aDeltaTime, myCollisionObject.myPosition, myLastMovementDirection );
 }
 void Avatar::Render()
 {
 	Renderer::GetInstance()->SpriteRender( &mySprite );
+	myAttackComponent.DEBUGRender();
 	//Renderer::GetInstance()->SpriteRender( &debugsprite );
 }
 void Avatar::StartMoveRight()
@@ -84,6 +92,6 @@ void Avatar::DigInDirection( Vector2f aDirection, Collision* aCollision )
 
 void Avatar::Attack()
 {
-	
+	myAttackComponent.Attack( 0 );
 }
 

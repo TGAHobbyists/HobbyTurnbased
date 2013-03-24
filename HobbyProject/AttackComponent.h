@@ -14,7 +14,7 @@ public:
 
 	void Init();
 	// facing > 0 means facing right, < 0 means left
-	void Update( const Vector2f& aParentPosition, const float aFacing );
+	void Update( const float aDeltaTime, const Vector2f& aParentPosition, const float aFacing );
 
 	void AddAttack( /* fastdelegate to call when attack hits*/ /* hitbox info from loaded file */ );
 
@@ -26,6 +26,8 @@ private:
 	Sprite mySprite;
 	Vector2f myOffset;
 	Hitbox myHitbox;
+	float myAttackTime;
+	int myCollisionHandle;
 };
 
 #endif//_ATTACK_COMPONENT_H_

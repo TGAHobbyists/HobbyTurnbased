@@ -10,12 +10,6 @@
 class GameState: public State
 {
 public:
-	enum InputModes
-	{
-		DIGGING,
-		DESIGNATING_DIGGING,
-		END_OF_INPUTMODES
-	};
 	GameState();
 	~GameState();
 
@@ -34,7 +28,7 @@ private:
 	Vector2f	myCursorPosition;
 	Sprite		myCursorSprite;
 	TerrainGrid	myTerrainGrid;
-	Collision	myCollision;
+	Collision*	myCollision;
 	Avatar		myTestUnit;
 	Selection	mySelection;
 };

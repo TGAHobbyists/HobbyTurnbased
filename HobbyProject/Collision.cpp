@@ -2,15 +2,34 @@
 #include "collision.h"
 
 #include "terraingrid.h"
+#include "Renderer.h"
 
-Collision::Collision()
-{}
-Collision::~Collision()
-{}
+Collision* Collision::ourCollision = NULL;
+
+Collision::Collision() {}
+Collision::~Collision() {}
 
 void Collision::Init( TerrainGrid* aTerrainGrid )
 {
 	myTerrain = aTerrainGrid;
+	myHitboxes.Init( 20, 20 );
+}
+
+void Collision::Update()
+{
+	// ugly n^2 complexity
+	for( int index = 0; index < myHitboxes.Count(); ++index )
+	{
+		for( int othersIndex = index + 1; othersIndex < myHitboxes.Count(); ++ othersIndex )
+		{
+			if( myHitboxes[ index ]->GetHitbox().CollideWith( &myHitboxes[othersIndex]->GetHitbox() ) )
+			{
+				myHitboxes[ index ]->CollisionWith( myHitboxes[othersIndex] );
+				myHitboxes[ othersIndex ]->CollisionWith( myHitboxes[index] );
+				// starting to look PRETTY havok
+			}
+		}
+	}
 }
 
 bool Collision::IsValidMove( Vector2f& aPosition, Vector2f& aWantedChange ) const
@@ -70,5 +89,45 @@ Tile& Collision::GetTileInDirection( const Vector2f& aPosition, const Vector2f& 
 Tile& Collision::GetTileAt( const Vector2f& aPosition )
 {
 	return myTerrain->GetTileAt( aPosition );
+}
+
+void Collision::AddHitbox( Hitbox* aHitbox )
+{
+	myHitboxes.Add( aHitbox );
+}
+
+void Collision::Create()
+{
+	if( ourCollision == NULL )
+		ourCollision = new Collision;
+}
+
+void Collision::Destroy()
+{
+	SAFE_DELETE( ourCollision );
+}
+
+Collision* Collision::GetInstance()
+{
+	return ourCollision;
+}
+
+void Collision::RemoveHitbox( Hitbox* myHitbox )
+{
+	for( int index = 0; index < myHitboxes.Count(); ++index )
+	{
+		if( myHitboxes[index] == myHitbox )
+		{
+			myHitboxes.RemoveCyclicAtIndex( index );
+		}
+	}
+}
+
+void Collision::RenderDebug()
+{
+	std::stringstream stringStream;
+	stringStream << "Number of hitboxes: ";
+	stringStream << myHitboxes.Count();
+	Renderer::GetInstance()->TextRender( stringStream.str(), Vector2f( 50.f, 10.f ), ALIGN_LEFT );
 }
 

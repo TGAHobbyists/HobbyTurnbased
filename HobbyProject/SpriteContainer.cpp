@@ -60,6 +60,12 @@ void SpriteContainer::Init( HGE* aHGE )
 	sprites.mySprite = sprite;
 	mySprites.Add( sprites );
 
+	tex = myHge->Texture_Load( "Sprites//Hitbox.png" );
+	sprite = new hgeSprite( tex, 0.0f, 0.0f, ( float )myHge->Texture_GetWidth( tex ), ( float )myHge->Texture_GetHeight( tex ) );
+	sprites.myName = "Sprites//Hitbox.png";
+	sprites.mySprite = sprite;
+	mySprites.Add( sprites );
+
 	mySprites.Optimize();
 }
 

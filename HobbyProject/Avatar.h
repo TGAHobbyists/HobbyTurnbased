@@ -4,6 +4,7 @@
 #include "sprite.h"
 #include "AABB2D.h"
 class Collision;
+#include "AttackComponent.h"
 
 class Avatar
 {
@@ -34,6 +35,8 @@ private:
 	Vector2f myMovement;
 	AABB2D myCollisionObject;
 	Sprite debugsprite;
+	AttackComponent myAttackComponent;
+	float myLastMovementDirection;
 };
 
 

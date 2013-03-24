@@ -15,6 +15,12 @@ public:
 
 	AABB2D& GetHitbox() { return myCollisionObject; }
 
+	void CollisionWith( Hitbox* aHitbox ) const
+	{
+		aHitbox;
+	}
+
+
 private:
 	//Vector of boxes not just one
 	AABB2D myCollisionObject;

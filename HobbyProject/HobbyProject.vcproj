@@ -347,14 +347,14 @@
 					</File>
 				</Filter>
 				<Filter
-					Name="Unit"
+					Name="Components"
 					>
 					<File
-						RelativePath=".\Unit.cpp"
+						RelativePath=".\AttackComponent.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Unit.h"
+						RelativePath=".\AttackComponent.h"
 						>
 					</File>
 				</Filter>

@@ -24,6 +24,7 @@ public:
 	Vector2f GetMinPosition() const { return myPosition + myMinOffset; }
 	Vector2f GetMaxPosition() const { return myPosition + myMaxOffset; }
 	Vector2f GetMiddlePosition() const { return myPosition + ((myMinOffset + myMaxOffset) * 0.5f); }
+	Vector2f GetSize() const { return myMaxOffset - myMinOffset; }
 
 	Vector2f myPosition;
 	Vector2f myMinOffset;

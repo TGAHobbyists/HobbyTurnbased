@@ -48,7 +48,7 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="1"
 				WarningLevel="4"
-				WarnAsError="true"
+				WarnAsError="false"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -311,14 +311,22 @@
 					</File>
 				</Filter>
 				<Filter
-					Name="Location"
+					Name="Actors"
 					>
 					<File
-						RelativePath=".\Location.cpp"
+						RelativePath=".\Actor.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Location.h"
+						RelativePath=".\Actor.h"
+						>
+					</File>
+					<File
+						RelativePath=".\ActorContainer.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\ActorContainer.h"
 						>
 					</File>
 				</Filter>
@@ -362,6 +370,10 @@
 					Name="Collision"
 					>
 					<File
+						RelativePath=".\AABB2D.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Collision.cpp"
 						>
 					</File>
@@ -369,16 +381,40 @@
 						RelativePath=".\Collision.h"
 						>
 					</File>
-				</Filter>
-				<Filter
-					Name="Selection"
-					>
 					<File
-						RelativePath=".\Selection.cpp"
+						RelativePath=".\CollisionFunctions.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Selection.h"
+						RelativePath=".\CollisionLayers.h"
+						>
+					</File>
+					<File
+						RelativePath=".\CollisionObject.h"
+						>
+					</File>
+					<File
+						RelativePath=".\CollisionResult.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Hitbox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Hitbox.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Enemy"
+					>
+					<File
+						RelativePath=".\Enemy.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Enemy.h"
 						>
 					</File>
 				</Filter>
@@ -419,18 +455,6 @@
 		<Filter
 			Name="Collision"
 			>
-			<File
-				RelativePath=".\AABB2D.h"
-				>
-			</File>
-			<File
-				RelativePath=".\CollisionFunctions.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\CollisionObject.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Mutex"

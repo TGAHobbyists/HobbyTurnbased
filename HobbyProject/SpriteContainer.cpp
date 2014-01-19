@@ -66,6 +66,12 @@ void SpriteContainer::Init( HGE* aHGE )
 	sprites.mySprite = sprite;
 	mySprites.Add( sprites );
 
+	tex = myHge->Texture_Load( "Sprites//Unit//enemy.png" );
+	sprite = new hgeSprite( tex, 0.0f, 0.0f, ( float )myHge->Texture_GetWidth( tex ), ( float )myHge->Texture_GetHeight( tex ) );
+	sprites.myName = "Sprites//Unit//enemy.png";
+	sprites.mySprite = sprite;
+	mySprites.Add( sprites );
+
 	mySprites.Optimize();
 }
 

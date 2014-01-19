@@ -1,5 +1,5 @@
-#ifndef _UNIT_H_
-#define _UNIT_H_
+#ifndef _ENEMY_H_
+#define _ENEMY_H_
 
 #include "Actor.h"
 #include "sprite.h"
@@ -7,38 +7,29 @@
 class Collision;
 #include "AttackComponent.h"
 
-class Avatar: public Actor
+class Enemy : public Actor
 {
 public:
-	Avatar();
-	~Avatar();
+	Enemy();
+	~Enemy();
 
+	void SpawnAt( const Vector2f& vSpawnPosition );
 	void Init();
 	void Destroy();
 
 	void Update( float aDeltaTime, Collision* aCollisionChecker );
+	void UpdateIntelligence( float aDeltaTime );
 	void Render();
 
 	Vector2f GetMiddlePosition() const { return myCollisionObject.GetMiddlePosition(); }
 	Vector2f GetPosition() const { return myCollisionObject.myPosition; }
 
-	void StartMoveRight();
-	void StopMoveRight();
-	void StartMoveLeft();
-	void StopMoveLeft();
 	void Jump();
 	bool IsInAir() const;
-	void DEBUGDigDown( Collision* aCollision );
-	void DigInDirection( Vector2f aDirection, Collision* aCollision );
 	void Attack();
-
-	bool IsAvatar() { return true; }
-
-	void onHit();
 
 private:
 	Sprite mySprite;
-	//Vector2f myOffset;
 	Vector2f myMovement;
 	AABB2D myCollisionObject;
 	Hitbox myHitbox;
@@ -49,5 +40,4 @@ private:
 };
 
 
-
-#endif//_UNIT_H_
+#endif//_ENEMY_H_

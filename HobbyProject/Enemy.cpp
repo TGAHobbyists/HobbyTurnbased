@@ -1,32 +1,34 @@
 #include "stdafx.h"
-#include "avatar.h"
+#include "Enemy.h"
 
 #include "renderer.h"
 #include "collision.h"
 
 #include "tile.h"
+#include "ActorContainer.h"
 
-Avatar::Avatar()
-{}
-Avatar::~Avatar()
+Enemy::Enemy()
+{
+
+}
+
+Enemy::~Enemy()
 {
 	Destroy();
 }
 
-void Avatar::Init()
+void Enemy::Init()
 {
 	myMovement.myY = 19.42f;
 	myLastMovementDirection = 1.0f;
 	myCollisionObject.myPosition = Vector2f( 25,5);
-	mySprite = Renderer::GetInstance()->CreateTexture( "Sprites//Unit//Unit.png" );
+	mySprite = Renderer::GetInstance()->CreateTexture( "Sprites//Unit//enemy.png" );
 	myCollisionObject.myMinOffset = Vector2f( mySprite.GetSize().x * -0.5f, mySprite.GetSize().y * -1.f );
 	myCollisionObject.myMaxOffset = Vector2f( mySprite.GetSize().x * 0.5f, 0 );
 
 	myHitbox.GetHitbox() = myCollisionObject;
-	myHitbox.setCallback( fastdelegate::MakeDelegate( this, &Avatar::onHit ) );
 	Collision::GetInstance()->AddHitbox( &myHitbox );
 
-	Vector2f debufsize(32,32);
 	debugsprite = Renderer::GetInstance()->CreateTexture( "Sprites//Hitbox.png" );
 	debugsprite.SetSize( myCollisionObject.GetSize() );
 	myAttackComponent.Init();
@@ -34,12 +36,12 @@ void Avatar::Init()
 	Actor::Init();
 }
 
-void Avatar::Destroy()
+void Enemy::Destroy()
 {
 	Actor::Destroy();
 }
 
-void Avatar::Update( float aDeltaTime, Collision* aCollisionChecker )
+void Enemy::Update( float aDeltaTime, Collision* aCollisionChecker )
 {
 	myMovement.myY += (9.82f) * 40 * aDeltaTime;
 	Vector2f change = Vector2f( 0, myMovement.myY * aDeltaTime );
@@ -61,56 +63,63 @@ void Avatar::Update( float aDeltaTime, Collision* aCollisionChecker )
 	mySprite.SetPosition( myCollisionObject.GetMinPosition() );
 	debugsprite.SetPosition( myCollisionObject.GetMinPosition() );
 	myAttackComponent.Update( aDeltaTime, myCollisionObject.myPosition, myLastMovementDirection );
+
+
+	// Brain update
+	UpdateIntelligence( aDeltaTime );
 }
-void Avatar::Render()
+
+void Enemy::UpdateIntelligence( float aDeltaTime )
+{
+	aDeltaTime;
+	const Actor* pAvatar = ActorContainer::GetInstance()->GetAvatar();
+	Vector2f vToEnemy = pAvatar->GetPosition() - GetPosition();
+
+	if( vToEnemy.x > 3.0f )
+	{
+		myMovement.myX = 100.f;
+	}
+	else if( vToEnemy.x < -3.0 )
+	{
+		myMovement.myX = -100.f;
+	}
+	else
+	{
+		myMovement.myX = 0;
+	}
+	
+	if( vToEnemy.Length() < mySprite.GetSize().x )
+	{
+		myAttackComponent.Attack( 0 );
+	}
+}
+
+void Enemy::Render()
 {
 	Renderer::GetInstance()->SpriteRender( &mySprite );
-	//myAttackComponent.DEBUGRender();
-	//Renderer::GetInstance()->SpriteRender( &debugsprite );
+	myAttackComponent.DEBUGRender();
+	Renderer::GetInstance()->SpriteRender( &debugsprite );
 }
-void Avatar::StartMoveRight()
-{
-	myMovement.myX += 80.f;
-}
-void Avatar::StopMoveRight()
-{
-	myMovement.myX -= 80.f;
-}
-void Avatar::StartMoveLeft()
-{
-	myMovement.myX -= 80.f;
-}
-void Avatar::StopMoveLeft()
-{
-	myMovement.myX += 80.f;
-}
-void Avatar::Jump()
+
+void Enemy::Jump()
 {
 	if( !IsInAir() )
-		myMovement.myY = -200.f;
+		myMovement.myY = -20.f;
 }
-bool Avatar::IsInAir() const
+
+bool Enemy::IsInAir() const
 {
 	return myMovement.myY != 0;
 }
-void Avatar::DEBUGDigDown( Collision* aCollision )
-{
-	Vector2f direction( 0, 15 );
-	aCollision->GetTileInDirection( myCollisionObject.myPosition, direction ).Strike( 1 );
-}
-void Avatar::DigInDirection( Vector2f aDirection, Collision* aCollision )
-{
-	Vector2f direction = aDirection.Normalize() * 23.f;
-	aCollision->GetTileInDirection( myCollisionObject.GetMiddlePosition(), direction ).Strike( 1 );
-	//debugsprite.SetPosition( myCollisionObject.GetMiddlePosition() + aDirection.Normalize() * 23.f );
-}
 
-void Avatar::Attack()
+void Enemy::Attack()
 {
 	myAttackComponent.Attack( 0 );
 }
 
-void Avatar::onHit()
+void Enemy::SpawnAt( const Vector2f& vSpawnPosition )
 {
-	myMovement.y = -200.f;
+	Init();
+	myCollisionObject.myPosition = vSpawnPosition;
 }
+

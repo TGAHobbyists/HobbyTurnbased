@@ -38,7 +38,7 @@ void AttackComponent::Update( const float aDeltaTime, const Vector2f& aParentPos
 
 void AttackComponent::AddAttack( /* fastdelegate to call when attack hits*/ /* hitbox info from loaded file */ )
 {
-	myOffset = Vector2f( 16.f, -16.f );
+	myOffset = Vector2f( 6.f, -16.f );
 	myHitbox.GetHitbox().myMinOffset = Vector2f( -8.f, -16.f );
 	myHitbox.GetHitbox().myMaxOffset = Vector2f( 8.f, 16.f );
 	

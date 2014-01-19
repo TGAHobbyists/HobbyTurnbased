@@ -14,6 +14,7 @@
 #include <Windows.h>
 #include "CU_CommonMacros.h"
 #include "Root.h"
+#include "FastDelegate.h"
 
 
 // TODO: reference additional headers your program requires here

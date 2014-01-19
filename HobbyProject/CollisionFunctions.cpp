@@ -16,6 +16,6 @@ bool AxisAlignedBoundingBox2D::CollideWith( AABB2D* aAlignedBox )
 	if( aAlignedBox->myPosition.myX > maxPos.myX ) return false;
 	if( aAlignedBox->myPosition.myX < minPos.myX ) return false;
 	if( aAlignedBox->myPosition.myY > maxPos.myY ) return false;
-	if( aAlignedBox->myPosition.myY > minPos.myY ) return false;
-	return false;
+	if( aAlignedBox->myPosition.myY < minPos.myY ) return false;
+	return true;
 }

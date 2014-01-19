@@ -4,7 +4,7 @@
 #include "vector.h"
 #include "cu_growingarray.h"
 #include "tile.h"
-#include "Hitbox.h"
+class Hitbox;
 class TerrainGrid;
 
 class Collision
@@ -41,7 +41,6 @@ private:
 
 	TerrainGrid* myTerrain;
 	CU::GrowingArray< Hitbox* > myHitboxes;
-
 };
 
 #endif//_COLLISION_H_

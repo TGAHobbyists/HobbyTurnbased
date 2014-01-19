@@ -48,8 +48,8 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				WarningLevel="4"
-				WarnAsError="true"
+				WarningLevel="3"
+				WarnAsError="false"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -221,6 +221,14 @@
 			>
 			<File
 				RelativePath=".\CU_CommonMacros.h"
+				>
+			</File>
+			<File
+				RelativePath=".\FastDelegate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\FastDelegateBind.h"
 				>
 			</File>
 			<File

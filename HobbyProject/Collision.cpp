@@ -3,6 +3,7 @@
 
 #include "terraingrid.h"
 #include "Renderer.h"
+#include "Hitbox.h"
 
 Collision* Collision::ourCollision = NULL;
 
@@ -18,15 +19,18 @@ void Collision::Init( TerrainGrid* aTerrainGrid )
 void Collision::Update()
 {
 	// ugly n^2 complexity
+	// oct tree eventually
+	// lists of "active" objects?
 	for( int index = 0; index < myHitboxes.Count(); ++index )
 	{
 		for( int othersIndex = index + 1; othersIndex < myHitboxes.Count(); ++ othersIndex )
 		{
 			if( myHitboxes[ index ]->GetHitbox().CollideWith( &myHitboxes[othersIndex]->GetHitbox() ) )
 			{
-				myHitboxes[ index ]->CollisionWith( myHitboxes[othersIndex] );
-				myHitboxes[ othersIndex ]->CollisionWith( myHitboxes[index] );
-				// starting to look PRETTY havok
+				if( !myHitboxes[ index ]->myCallback.empty() )
+					myHitboxes[ index ]->myCallback();
+				if( !myHitboxes[ othersIndex ]->myCallback.empty() )
+					myHitboxes[ othersIndex ]->myCallback();
 			}
 		}
 	}

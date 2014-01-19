@@ -5,7 +5,8 @@
 #include "Terraingrid.h"
 #include "avatar.h"
 #include "collision.h"
-#include "Selection.h"
+#include "Enemy.h"
+#include "ActorContainer.h"
 
 class GameState: public State
 {
@@ -21,8 +22,11 @@ public:
 	bool Render();
 
 	bool HandleInput();
+	
 
 private:
+	void OnMouseDown();
+	CU::GrowingArray< Enemy* > myTestDYNAMICALLOCenemyArray;
 	bool myMouseDown;
 	CU::GrowingArray< std::string > myInputModes;
 	Vector2f	myCursorPosition;
@@ -30,6 +34,6 @@ private:
 	TerrainGrid	myTerrainGrid;
 	Collision*	myCollision;
 	Avatar		myTestUnit;
-	Selection	mySelection;
+	ActorContainer myActorContainer;
 };
 #endif//_GAME_STATE_H_

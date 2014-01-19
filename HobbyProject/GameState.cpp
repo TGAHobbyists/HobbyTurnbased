@@ -21,22 +21,31 @@ void GameState::InitZero()
 
 void GameState::Init()
 {
-	myMouseDown = false;
-	myTerrainGrid.Init();
-	myTestUnit.Init();
 	Collision::Create();
 	myCollision = Collision::GetInstance();
 	myCollision->Init( &myTerrainGrid );
+
+	myMouseDown = false;
+	myTerrainGrid.Init();
+	myTestUnit.Init();
+
 	Vector2f cursorSize( 32,32 );
 	myCursorSprite = Renderer::GetInstance()->CreateTexture( "Sprites//Fab cursor.png" );
-	mySelection.Init();
+
+	myTestDYNAMICALLOCenemyArray.Init( 16, 32 );
 }
 
 bool GameState::Update( float aDeltaTime )
 {
 	myTestUnit.Update( aDeltaTime, myCollision );
 	HandleInput();
-	mySelection.Update( aDeltaTime );
+
+	myCollision->Update();
+
+	for( int index = 0; index < myTestDYNAMICALLOCenemyArray.Count(); ++index )
+	{
+		myTestDYNAMICALLOCenemyArray[ index ]->Update( aDeltaTime, myCollision );
+	}
 	return true;
 }
 
@@ -45,9 +54,12 @@ bool GameState::Render()
 	myTerrainGrid.Render();
 	myTestUnit.Render();
 	myCursorSprite.SetPosition( myCursorPosition );
-	mySelection.Render();
 	Renderer::GetInstance()->SpriteRender( &myCursorSprite );
 	myCollision->RenderDebug();
+	for( int index = 0; index < myTestDYNAMICALLOCenemyArray.Count(); ++index )
+	{
+		myTestDYNAMICALLOCenemyArray[ index ]->Render();
+	}
 
 	return true;
 }
@@ -70,6 +82,7 @@ bool GameState::HandleInput()
 				if( events[index].myInputAction == Input::Press )
 				{
 					myMouseDown = true;
+					OnMouseDown();
 				}
 				if( events[index].myInputAction == Input::Release )
 				{
@@ -118,4 +131,11 @@ bool GameState::HandleInput()
 		}
 	}
 	return true;
+}
+
+void GameState::OnMouseDown()
+{
+	Enemy* enemy = new Enemy();
+	enemy->SpawnAt( myCursorPosition );
+	myTestDYNAMICALLOCenemyArray.Add( enemy );
 }

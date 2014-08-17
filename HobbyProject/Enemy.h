@@ -35,7 +35,6 @@ private:
 	Hitbox myHitbox;
 
 	Sprite debugsprite;
-	AttackComponent myAttackComponent;
 	float myLastMovementDirection;
 };
 

@@ -28,20 +28,23 @@ public:
 	void StopMoveLeft();
 	void Jump();
 	bool IsInAir() const;
-	void DEBUGDigDown( Collision* aCollision );
-	void DigInDirection( Vector2f aDirection, Collision* aCollision );
 	void Attack();
 
 	bool IsAvatar() { return true; }
 
-	void onHit();
+	void onHit( Hitbox* pEnemyHitbox );
 
 private:
 	Sprite mySprite;
-	//Vector2f myOffset;
+
 	Vector2f myMovement;
+	Vector2f myExternalVelocities;
 	AABB2D myCollisionObject;
 	Hitbox myHitbox;
+
+	float myInvulnerabilityTime;
+
+	int m_iHealth;
 
 	Sprite debugsprite;
 	AttackComponent myAttackComponent;

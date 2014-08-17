@@ -321,12 +321,12 @@ bool FS::File::ReadData(void* someData,int aSizeToRead)
 
 int FS::File::GetFileSize()
 {
-	long begin = myFileStream.tellg();
+	auto begin = myFileStream.tellg();
 	myFileStream.seekg(0, std::ios::end);
-	long end = myFileStream.tellg();
+	auto end = myFileStream.tellg();
 	myFileStream.seekp(0, std::ios::beg);
 	myFileStream.seekg(0, std::ios::beg);
-	return (end-begin);
+	return (static_cast< int >( end-begin ) );
 }
 
 bool FS::File::FlushToDisk()

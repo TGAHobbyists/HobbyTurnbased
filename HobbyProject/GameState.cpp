@@ -128,6 +128,13 @@ bool GameState::HandleInput()
 					myTestUnit.Attack();
 				}
 			}
+			if( events[index].myKey == DIK_T )
+			{
+				if( events[index].myInputAction == Input::Press )
+				{
+					ActorContainer::GetInstance()->SetEnemyTarget( myCursorPosition );
+				}
+			}
 		}
 	}
 	return true;

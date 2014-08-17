@@ -27,12 +27,13 @@ void Enemy::Init()
 	myCollisionObject.myMaxOffset = Vector2f( mySprite.GetSize().x * 0.5f, 0 );
 
 	myHitbox.GetHitbox() = myCollisionObject;
+	myHitbox.myAlignment = Hitbox::ALIGNMENT_HOSTILE;
 	Collision::GetInstance()->AddHitbox( &myHitbox );
 
-	debugsprite = Renderer::GetInstance()->CreateTexture( "Sprites//Hitbox.png" );
-	debugsprite.SetSize( myCollisionObject.GetSize() );
-	myAttackComponent.Init();
-	myAttackComponent.AddAttack();
+	//debugsprite = Renderer::GetInstance()->CreateTexture( "Sprites//Hitbox.png" );
+	//debugsprite.SetSize( myCollisionObject.GetSize() );
+	//myAttackComponent.Init();
+	//myAttackComponent.AddAttack();
 	Actor::Init();
 }
 
@@ -62,7 +63,7 @@ void Enemy::Update( float aDeltaTime, Collision* aCollisionChecker )
 	myHitbox.GetHitbox().myPosition = GetPosition();
 	mySprite.SetPosition( myCollisionObject.GetMinPosition() );
 	debugsprite.SetPosition( myCollisionObject.GetMinPosition() );
-	myAttackComponent.Update( aDeltaTime, myCollisionObject.myPosition, myLastMovementDirection );
+	//myAttackComponent.Update( aDeltaTime, myCollisionObject.myPosition, myLastMovementDirection );
 
 
 	// Brain update
@@ -72,32 +73,19 @@ void Enemy::Update( float aDeltaTime, Collision* aCollisionChecker )
 void Enemy::UpdateIntelligence( float aDeltaTime )
 {
 	aDeltaTime;
-	const Actor* pAvatar = ActorContainer::GetInstance()->GetAvatar();
-	Vector2f vToEnemy = pAvatar->GetPosition() - GetPosition();
+	Vector2f vTarget = ActorContainer::GetInstance()->GetEnemyTarget() - myHitbox.GetHitbox().myPosition;
+	
 
-	if( vToEnemy.x > 3.0f )
+	if( vTarget.x > 3.0f )
 	{
 		myMovement.myX = 100.f;
-	}
-	else if( vToEnemy.x < -3.0 )
-	{
-		myMovement.myX = -100.f;
-	}
-	else
-	{
-		myMovement.myX = 0;
-	}
-	
-	if( vToEnemy.Length() < mySprite.GetSize().x )
-	{
-		myAttackComponent.Attack( 0 );
 	}
 }
 
 void Enemy::Render()
 {
 	Renderer::GetInstance()->SpriteRender( &mySprite );
-	myAttackComponent.DEBUGRender();
+	
 	Renderer::GetInstance()->SpriteRender( &debugsprite );
 }
 
@@ -114,7 +102,7 @@ bool Enemy::IsInAir() const
 
 void Enemy::Attack()
 {
-	myAttackComponent.Attack( 0 );
+	//myAttackComponent.Attack( 0 );
 }
 
 void Enemy::SpawnAt( const Vector2f& vSpawnPosition )

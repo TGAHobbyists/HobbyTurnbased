@@ -47,3 +47,11 @@ const Actor* ActorContainer::GetAvatar()
 {
 	return myAvatarPointer;
 }
+void ActorContainer::SetEnemyTarget( const Vector2f& vTarget )
+{
+	m_vEnemyTarget = vTarget;
+}
+const Vector2f& ActorContainer::GetEnemyTarget()
+{
+	return m_vEnemyTarget;
+}

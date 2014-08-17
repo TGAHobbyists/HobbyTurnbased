@@ -28,9 +28,9 @@ void Collision::Update()
 			if( myHitboxes[ index ]->GetHitbox().CollideWith( &myHitboxes[othersIndex]->GetHitbox() ) )
 			{
 				if( !myHitboxes[ index ]->myCallback.empty() )
-					myHitboxes[ index ]->myCallback();
+					myHitboxes[ index ]->myCallback( myHitboxes[ othersIndex ] );
 				if( !myHitboxes[ othersIndex ]->myCallback.empty() )
-					myHitboxes[ othersIndex ]->myCallback();
+					myHitboxes[ othersIndex ]->myCallback( myHitboxes[ index ] );
 			}
 		}
 	}

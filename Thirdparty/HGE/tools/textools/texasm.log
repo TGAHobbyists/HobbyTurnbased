@@ -1,0 +1,96 @@
+HGE Started..
+
+HGE version: 1.80
+Date: 17.08.2014, 16:17:50
+
+Application: HGE
+OS: Windows 6.1.7601
+Memory: 4194303K total, 4194303K free
+
+D3D Driver: nvd3dum.dll
+Description: NVIDIA GeForce GTX 570
+Version: 9.18.13.3182
+Can't find appropriate full screen video mode
+Mode: 320 x 200 x UNKNOWN
+
+Init done.
+
+
+Texture Assembler v0.1
+Copyright (C) 2003-2008, Relish Games
+
+
+Usage: TEXASM.EXE <res-file>|<wildcard> <output-wildcard> [<task>]
+
+
+
+<res-file> - resource script to process.
+
+To be able to locate the resources, texasm.exe must
+
+be run from the folder of the main project executable.
+
+
+<wildcard> - a wildcard to search image files for processing.
+
+Either <res-file> or <wildcard> should be specified, not both.
+
+All image formats supported by HGE can be handled.
+
+
+<output-wildcard> - wildcard to store the result to.
+
+For example, "opt_textures\TitleTex" will generate the following files:
+
+  opt_textures\TitleTex1.png, opt_textures\TitleTex1.res
+
+  opt_textures\TitleTex2.png, opt_textures\TitleTex2.res
+
+  ...
+
+
+<task> - optional resource filter.
+
+If omitted, all resources found in the script/folder will be processed.
+
+The default resgroup assigned to folder resources is 0.
+
+Example tasks:
+
+
+  2
+
+  Process all resources from resgroup 2
+
+
+  7+sprFlower/sprLeaf/sprTrunk
+
+  Process resources from resgroup 7 whose
+  names start with sprFlower, sprLeaf or sprTrunk
+
+
+  3-gui\menu\title
+
+  Process resources from resgroup 3 whose
+  names DON'T start with gui, menu or title
+
+
+  +mars/earth/mercury
+
+  Process all resources whose names start
+  with mars, earth or mercury
+
+
+  -gui\menu\title
+
+  Process all resources whose names DON'T
+  start with gui, menu or title
+
+
+
+Currently only Sprite resources and only 32bit PNG output are supported.
+
+
+
+Finishing..
+The End.

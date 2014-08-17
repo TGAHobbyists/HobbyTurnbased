@@ -1,27 +1,19 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HobbyProject", "HobbyProject\HobbyProject.vcproj", "{72B702BE-111E-4798-900E-AD1DDA030FE0}"
-	ProjectSection(ProjectDependencies) = postProject
-		{84C59E81-E29A-47B7-8ADE-0D19F41DF5BC} = {84C59E81-E29A-47B7-8ADE-0D19F41DF5BC}
-		{77E5BAAB-D752-4789-AEF1-40ACC07209A9} = {77E5BAAB-D752-4789-AEF1-40ACC07209A9}
-		{70687FD1-1073-40B5-8FF1-35E3151CFD8A} = {70687FD1-1073-40B5-8FF1-35E3151CFD8A}
-		{1D6696D8-5BC4-4ABD-9906-6FF284AC0AB1} = {1D6696D8-5BC4-4ABD-9906-6FF284AC0AB1}
-		{5792B9DE-F37C-442E-9B24-375756CDB61A} = {5792B9DE-F37C-442E-9B24-375756CDB61A}
-		{C406DAEC-0886-4771-8DEA-9D7329B46CC1} = {C406DAEC-0886-4771-8DEA-9D7329B46CC1}
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HobbyProject", "HobbyProject\HobbyProject.vcxproj", "{72B702BE-111E-4798-900E-AD1DDA030FE0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonUtilities", "Library\CommonUtilities\CommonUtilities.vcproj", "{84C59E81-E29A-47B7-8ADE-0D19F41DF5BC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonUtilities", "Library\CommonUtilities\CommonUtilities.vcxproj", "{84C59E81-E29A-47B7-8ADE-0D19F41DF5BC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DL_Debug", "Library\DL_Debug\DL_Debug.vcproj", "{77E5BAAB-D752-4789-AEF1-40ACC07209A9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DL_Debug", "Library\DL_Debug\DL_Debug.vcxproj", "{77E5BAAB-D752-4789-AEF1-40ACC07209A9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FI_File", "Library\FI_File\FI_File.vcproj", "{1D6696D8-5BC4-4ABD-9906-6FF284AC0AB1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FI_File", "Library\FI_File\FI_File.vcxproj", "{1D6696D8-5BC4-4ABD-9906-6FF284AC0AB1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputWrapper", "Library\InputWrapper\InputWrapper.vcproj", "{70687FD1-1073-40B5-8FF1-35E3151CFD8A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputWrapper", "Library\InputWrapper\InputWrapper.vcxproj", "{70687FD1-1073-40B5-8FF1-35E3151CFD8A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Timer", "Library\Timer\Timer.vcproj", "{5792B9DE-F37C-442E-9B24-375756CDB61A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Timer", "Library\Timer\Timer.vcxproj", "{5792B9DE-F37C-442E-9B24-375756CDB61A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tinyxml", "Library\tinyxml\tinyxml_lib.vcproj", "{C406DAEC-0886-4771-8DEA-9D7329B46CC1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tinyxml", "Library\tinyxml\tinyxml_lib.vcxproj", "{C406DAEC-0886-4771-8DEA-9D7329B46CC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

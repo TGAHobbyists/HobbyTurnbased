@@ -14,7 +14,7 @@
 class Hitbox
 {
 public:
-	typedef fastdelegate::FastDelegate0< void > CollisionCallback;
+	typedef fastdelegate::FastDelegate1< Hitbox*, void > CollisionCallback;
 	enum HitboxType
 	{
 		TYPE_BODY,

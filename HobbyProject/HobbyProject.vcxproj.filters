@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="StdAdx">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="StateStack">
+      <UniqueIdentifier>{dbfb1e42-6c5c-4403-8fc3-78a0a9b0f707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpriteContainer">
+      <UniqueIdentifier>{163af325-1740-4e46-9a6c-b2d130558763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{b01bc45d-d084-4684-a2b6-7555338eb873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Sprite">
+      <UniqueIdentifier>{6ad67a55-5ce0-47ad-a866-f46b3bea2e41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{ac6a5a41-09a9-45a4-959f-df0241828ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\GameState">
+      <UniqueIdentifier>{90d5bdd5-14f8-4468-9815-b339a552ed84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\GameState\Avatar">
+      <UniqueIdentifier>{66d82330-9a41-42dd-a8dd-7dc5ea3d19b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\GameState\Actors">
+      <UniqueIdentifier>{04b2cefe-4457-4a88-8a1e-e3bf611c05a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\GameState\TerrainGrid">
+      <UniqueIdentifier>{6784afbb-f605-4545-9cfd-7bb2cc66b65b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\GameState\Tile">
+      <UniqueIdentifier>{e4621895-e243-45b9-b343-729e68a12503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\GameState\Components">
+      <UniqueIdentifier>{e5bafee0-b31a-44b7-98ae-8dc5fcaccf91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\GameState\Collision">
+      <UniqueIdentifier>{5489622a-562c-4847-aa41-b805c5ef7281}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\GameState\Enemy">
+      <UniqueIdentifier>{96077f5c-d9d6-478c-b22f-66854430554e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Root">
+      <UniqueIdentifier>{083bc8d0-eb10-4277-9a10-6c13e106727e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{5a79ba60-1805-42bc-9ca6-0c747b0df03e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputHandler">
+      <UniqueIdentifier>{eb0d7c97-fdfc-4315-8a3b-a3a99110e0d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{4e2edd7e-644c-47ce-92fa-1d6bcc4055cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mutex">
+      <UniqueIdentifier>{c81482f1-9c4c-49f3-ab53-b2f963632844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mutex\Manager">
+      <UniqueIdentifier>{349d1751-f821-4fd6-ab14-d99ab2988fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mutex\Node">
+      <UniqueIdentifier>{3b3d6d5b-7b41-46ff-b6c2-12817e151bfc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>StdAdx</Filter>
+    </ClCompile>
+    <ClCompile Include="StateController.cpp">
+      <Filter>StateStack</Filter>
+    </ClCompile>
+    <ClCompile Include="StateStack.cpp">
+      <Filter>StateStack</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteContainer.cpp">
+      <Filter>SpriteContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Renderer\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Avatar.cpp">
+      <Filter>States\GameState\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>States\GameState\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorContainer.cpp">
+      <Filter>States\GameState\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainGrid.cpp">
+      <Filter>States\GameState\TerrainGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>States\GameState\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackComponent.cpp">
+      <Filter>States\GameState\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>States\GameState\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionFunctions.cpp">
+      <Filter>States\GameState\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Hitbox.cpp">
+      <Filter>States\GameState\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>States\GameState\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Root.cpp">
+      <Filter>Root</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="MutexManager.cpp">
+      <Filter>Mutex\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Mutex.cpp">
+      <Filter>Mutex\Node</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>StdAdx</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>StdAdx</Filter>
+    </ClInclude>
+    <ClInclude Include="StateController.h">
+      <Filter>StateStack</Filter>
+    </ClInclude>
+    <ClInclude Include="StateStack.h">
+      <Filter>StateStack</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteContainer.h">
+      <Filter>SpriteContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Renderer\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Avatar.h">
+      <Filter>States\GameState\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>States\GameState\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorContainer.h">
+      <Filter>States\GameState\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainGrid.h">
+      <Filter>States\GameState\TerrainGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>States\GameState\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackComponent.h">
+      <Filter>States\GameState\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AABB2D.h">
+      <Filter>States\GameState\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>States\GameState\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionLayers.h">
+      <Filter>States\GameState\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionObject.h">
+      <Filter>States\GameState\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResult.h">
+      <Filter>States\GameState\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Hitbox.h">
+      <Filter>States\GameState\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>States\GameState\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Root.h">
+      <Filter>Root</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>InputHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="MutexManager.h">
+      <Filter>Mutex\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Mutex.h">
+      <Filter>Mutex\Node</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

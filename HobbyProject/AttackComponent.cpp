@@ -22,6 +22,7 @@ void AttackComponent::Init()
 void AttackComponent::Update( const float aDeltaTime, const Vector2f& aParentPosition, const float aFacing )
 {
 	myHitbox.GetHitbox().myPosition = aParentPosition + Vector2f( myOffset.x * aFacing, myOffset.y );
+	myHitbox.myAlignment = Hitbox::ALIGNMENT_PLAYER;
 
 	Vector2f position = myHitbox.GetHitbox().myPosition - myHitbox.GetHitbox().GetSize() * 0.5f;
 

@@ -716,10 +716,10 @@ HGE_Impl::HGE_Impl()
 #endif
 
 
-//	GetModuleFileName(GetModuleHandle(NULL), szAppPath, sizeof(szAppPath));
-//	int i;
-//	for(i=strlen(szAppPath)-1; i>0; i--) if(szAppPath[i]=='\\') break;
-	szAppPath[0]=0;
+	GetModuleFileName(GetModuleHandle(NULL), szAppPath, sizeof(szAppPath));
+	int i;
+	for(i=strlen(szAppPath)-1; i>0; i--) if(szAppPath[i]=='\\') break;
+	szAppPath[i+1]=0;
 }
 
 void HGE_Impl::_PostError(char *error)

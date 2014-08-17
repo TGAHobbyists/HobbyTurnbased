@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source\Math">
+      <UniqueIdentifier>{7e717d7d-fcc5-456b-a378-ff9d05040ff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Math\Algorithms">
+      <UniqueIdentifier>{3d8070af-1ffb-47fd-8e74-35ae335daf78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Random">
+      <UniqueIdentifier>{94a57904-6856-46c5-8271-fa6c68b0c38b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Structures">
+      <UniqueIdentifier>{4e783feb-b4d8-4052-a64c-ffca13142cb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Threading">
+      <UniqueIdentifier>{0035089d-4591-4104-87e2-e7d404a81aa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Command">
+      <UniqueIdentifier>{0d4b5ec3-9a72-4a8d-ba60-d3db532d9b72}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CU_CommonMacros.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="FastDelegate.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="FastDelegateBind.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="StringToInt.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_SortingAlgorithms.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatPlane.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="MathConstants.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Orientation.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneVolume.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="MTRand.h">
+      <Filter>Source\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Source\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_BinaryTree.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_DoubleLinkedList.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_FixedArray.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_GrowingArray.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_HashTable.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_Heap.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_Queue.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_Stack.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_StaticArray.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="CU_Table.h">
+      <Filter>Source\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseSynchronizer.h">
+      <Filter>Source\Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="RaceSynchronizer.h">
+      <Filter>Source\Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="IntersectionPointCommander.h">
+      <Filter>Source\Command</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FloatPlane.cpp">
+      <Filter>Source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Source\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersectionPointCommander.cpp">
+      <Filter>Source\Command</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

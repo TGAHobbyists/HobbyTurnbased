@@ -24,6 +24,7 @@ void Avatar::Init()
 
 	myHitbox.GetHitbox() = myCollisionObject;
 	myHitbox.setCallback( fastdelegate::MakeDelegate( this, &Avatar::onHit ) );
+	myHitbox.myAlignment = Hitbox::ALIGNMENT_PLAYER;
 	Collision::GetInstance()->AddHitbox( &myHitbox );
 
 	Vector2f debufsize(32,32);
@@ -31,6 +32,7 @@ void Avatar::Init()
 	debugsprite.SetSize( myCollisionObject.GetSize() );
 	myAttackComponent.Init();
 	myAttackComponent.AddAttack();
+	m_iHealth = 100;
 	Actor::Init();
 }
 
@@ -41,13 +43,23 @@ void Avatar::Destroy()
 
 void Avatar::Update( float aDeltaTime, Collision* aCollisionChecker )
 {
-	myMovement.myY += (9.82f) * 40 * aDeltaTime;
-	Vector2f change = Vector2f( 0, myMovement.myY * aDeltaTime );
+	myInvulnerabilityTime -= aDeltaTime;
+	
+	if( !IsInAir() )
+	{
+		const float fDecelerationFactor = 800.f;
+		float fNewLength = CU::Macro::Max( 0.0f, myExternalVelocities.Length() - fDecelerationFactor * aDeltaTime );
+		myExternalVelocities = myExternalVelocities.Normalize() * fNewLength;
+	}
+	// movement update
+	myMovement.myY += (9.82f) * 40.f * aDeltaTime;
+	Vector2f change = Vector2f( 0, ( myExternalVelocities.myY + myMovement.myY ) * aDeltaTime );
 	if( !aCollisionChecker->IsValidMoveFat( myCollisionObject.myPosition, change, 7.f ) )
 	{
 		myMovement.myY = 0;
+		myExternalVelocities.myY = 0;
 	}
-	change = myMovement * aDeltaTime;
+	change = ( myExternalVelocities + myMovement ) * aDeltaTime;
 	if( !aCollisionChecker->IsValidMoveFat( myCollisionObject.myPosition, change, 7.f ) )
 	{
 		change.myX = 0;
@@ -57,9 +69,11 @@ void Avatar::Update( float aDeltaTime, Collision* aCollisionChecker )
 	else if( change.myX < 0 )
 		myLastMovementDirection = -1.f;
 	myCollisionObject.myPosition += change;
+	// alignSprites
 	myHitbox.GetHitbox().myPosition = GetPosition();
 	mySprite.SetPosition( myCollisionObject.GetMinPosition() );
 	debugsprite.SetPosition( myCollisionObject.GetMinPosition() );
+	// attacking
 	myAttackComponent.Update( aDeltaTime, myCollisionObject.myPosition, myLastMovementDirection );
 }
 void Avatar::Render()
@@ -93,24 +107,23 @@ bool Avatar::IsInAir() const
 {
 	return myMovement.myY != 0;
 }
-void Avatar::DEBUGDigDown( Collision* aCollision )
-{
-	Vector2f direction( 0, 15 );
-	aCollision->GetTileInDirection( myCollisionObject.myPosition, direction ).Strike( 1 );
-}
-void Avatar::DigInDirection( Vector2f aDirection, Collision* aCollision )
-{
-	Vector2f direction = aDirection.Normalize() * 23.f;
-	aCollision->GetTileInDirection( myCollisionObject.GetMiddlePosition(), direction ).Strike( 1 );
-	//debugsprite.SetPosition( myCollisionObject.GetMiddlePosition() + aDirection.Normalize() * 23.f );
-}
 
 void Avatar::Attack()
 {
 	myAttackComponent.Attack( 0 );
 }
 
-void Avatar::onHit()
+void Avatar::onHit( Hitbox* pEnemyHitbox )
 {
-	myMovement.y = -200.f;
+	if( myInvulnerabilityTime <= 0.0f && pEnemyHitbox != NULL && pEnemyHitbox->myAlignment != myHitbox.myAlignment )
+	{
+		myInvulnerabilityTime = 0.8f;
+		const bool bToRightOf = myHitbox.GetHitbox().GetMiddlePosition().x > pEnemyHitbox->GetHitbox().GetMiddlePosition().x;
+		Vector2f vLaunchVector = Vector2f( 10, -5 ).Normalize();
+		if( !bToRightOf )
+			vLaunchVector.x *= -1;
+		vLaunchVector = vLaunchVector * 150.f;
+		myMovement.myY = vLaunchVector.myY;
+		myExternalVelocities.myX += vLaunchVector.myX;
+	}
 }

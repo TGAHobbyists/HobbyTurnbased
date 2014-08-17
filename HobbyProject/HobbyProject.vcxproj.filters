@@ -141,6 +141,9 @@
     <ClCompile Include="Mutex.cpp">
       <Filter>Mutex\Node</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>SpriteContainer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -223,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="Mutex.h">
       <Filter>Mutex\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>SpriteContainer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

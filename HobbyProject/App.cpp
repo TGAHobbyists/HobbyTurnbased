@@ -10,7 +10,7 @@
 
 App::App()
 {
-	myTimer = myTimerManager.CreateTimer();
+	m_pTimer = m_TimerManager.CreateTimer();
 }
 
 App::~App()
@@ -30,12 +30,10 @@ void App::Init()
 
 bool App::update()
 {
-	myTimerManager.Update();
-	float deltaTime = myTimer->GetDeltaTime();
+	m_TimerManager.Update();
+	float deltaTime = m_pTimer->GetDeltaTime();
 
 	Root::GetInstance()->GetInputWrapper()->SwapBuffers();
-
-	Renderer::GetInstance()->TextRender( "DO NOT WANT", Vector2f(700, 200), ALIGN_RIGHT );
 
 	myStateStack.Update( deltaTime );
 
@@ -48,3 +46,4 @@ void App::render()
 	myStateStack.Render();
 	Renderer::GetInstance()->Render();
 }
+

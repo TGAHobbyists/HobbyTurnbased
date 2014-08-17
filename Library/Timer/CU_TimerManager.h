@@ -15,7 +15,7 @@ namespace CommonUtilities
 	private:
 		SystemTimer		mySystemTimer;
 		Timer			myMasterTimer;
-		CU::GrowingArray<Timer*> myTimers;
+		CU::GrowingArray<Timer*> m_pTimers;
 	};
 }
 

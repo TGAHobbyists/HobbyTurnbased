@@ -45,6 +45,7 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 {
 	SetCurrentDirectory("..\\Bin");
 
+
 	const Vector2f resolution( 800.f, 600.f );
 
 	HGE* hgeEngine=HGE_Init( resolution.myX, resolution.myY );
@@ -59,8 +60,7 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 	Renderer::Create( hgeEngine );
 	Root::Create();
 
-	Root::GetInstance()->myResolutionWidth = resolution.myX;
-	Root::GetInstance()->myResolutionHeight = resolution.myY;
+	Root::GetInstance()->setResolution( resolution.myX, resolution.myY );
 
 	Input::InputWrapper input;
 	input.Initialize( hgeEngine->System_GetState( HGE_HWND ), Vector2f() );
@@ -70,9 +70,9 @@ int WINAPI WinMain(HINSTANCE , HINSTANCE , LPSTR , int )
 	MutexManager mutex;
 	Root::GetInstance()->AttachMutexManager( &mutex );
 
-	
 
 	App application;
+
 
 	application.Init();
 	for(;;)

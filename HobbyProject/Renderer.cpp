@@ -5,6 +5,7 @@
 #include "hgeFont.h"
 #include "sprite.h"
 
+#include "Camera.h"
 #include "SpriteContainer.h"
 
 FontRenderMessage::FontRenderMessage()
@@ -102,6 +103,8 @@ void Renderer::Render()
 	myHGE->Gfx_BeginScene();
 	myHGE->Gfx_Clear( DWORD( 0xFFFFFFFF ) );
 
+	const Vector2f vCameraOffset = Camera::getInstance()->getCameraOffset();
+
 	int spriteIndex = -1;
 	hgeSprite* sprite = NULL;
 	for( int index = 0; index < mySpriteRenderMessages.Count(); ++index )
@@ -120,8 +123,8 @@ void Renderer::Render()
 		if( xScale != 1.f )
 			sprite = sprite;
 		if( sprite != NULL )
-			sprite->RenderEx( mySpriteRenderMessages[index].myPosition.myX,
-								mySpriteRenderMessages[index].myPosition.myY,
+			sprite->RenderEx( mySpriteRenderMessages[index].myPosition.myX - vCameraOffset.myX,
+								mySpriteRenderMessages[index].myPosition.myY - vCameraOffset.myY,
 								0.f,
 								xScale,
 								yScale

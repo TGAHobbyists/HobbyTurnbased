@@ -7,6 +7,7 @@
 #include "collision.h"
 #include "Enemy.h"
 #include "ActorContainer.h"
+#include "Camera.h"
 
 class GameState: public State
 {
@@ -22,7 +23,8 @@ public:
 	bool Render();
 
 	bool HandleInput();
-	
+
+	Vector2f getCursorPosition();
 
 private:
 	void OnMouseDown();
@@ -35,5 +37,6 @@ private:
 	Collision*	myCollision;
 	Avatar		myTestUnit;
 	ActorContainer myActorContainer;
+	Camera		m_camera;
 };
 #endif//_GAME_STATE_H_

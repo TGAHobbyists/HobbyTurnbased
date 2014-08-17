@@ -6,6 +6,8 @@
 
 #include "statestack.h"
 
+#include "Vector.h"
+
 
 class App
 {
@@ -18,8 +20,8 @@ public:
 	void render();
 
 private:
-	CU::TimerManager myTimerManager;
-	CU::Timer* myTimer;
+	CU::TimerManager m_TimerManager;
+	CU::Timer* m_pTimer;
 
 	StateStack myStateStack;
 };

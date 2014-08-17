@@ -12,9 +12,9 @@ Profiler::Profiler()
 	QueryPerformanceFrequency(reinterpret_cast<LARGE_INTEGER*>(&myFrequency));
 	
 
-	myTimerStack.Init(32, 16);
+	m_pTimerStack.Init(32, 16);
 
-	myTimerNames.Init(32,16);
+	m_pTimerNames.Init(32,16);
 	myCurrentFrame = 0;
 }
 Profiler::~Profiler()
@@ -48,7 +48,7 @@ void Profiler::AddData( std::string aDataName, float aSelfTime, std::string aPar
 	}
 	if(addname == true)
 	{
-		myTimerNames.Add( aDataName );
+		m_pTimerNames.Add( aDataName );
 	}
 
 	ProfilingData temp = myData[myCurrentFrame].Get( S2I( aDataName.c_str() ) );
@@ -91,30 +91,30 @@ void Profiler::AddData( std::string aDataName, float aSelfTime, std::string aPar
 
 void Profiler::AddTimer( ProfilingTimer* aTimer )
 {
-	if( myTimerStack.Top() != NULL )
+	if( m_pTimerStack.Top() != NULL )
 	{
-		aTimer->SetParentTimer( myTimerStack.Top()->GetName() );
+		aTimer->SetParentTimer( m_pTimerStack.Top()->GetName() );
 	}
-	myTimerStack.Push(aTimer);
+	m_pTimerStack.Push(aTimer);
 }
 void Profiler::RemoveTimer()
 {
-	myTimerStack.Pop();
+	m_pTimerStack.Pop();
 }
 
 //void Profiler::TemporaryDraw(hgeFont* aFont)
 //{
-	//for(int index = 0; index < myTimerNames.Count(); index++)
+	//for(int index = 0; index < m_pTimerNames.Count(); index++)
 	//{
 	//	float totalTime = 0;
 	//	float selfTime = 0;
 	//	int calls = 0;
-	//	std::string parent = myData[myCurrentFrame].Get( S2I(myTimerNames[index].c_str()) ).parentNode;
+	//	std::string parent = myData[myCurrentFrame].Get( S2I(m_pTimerNames[index].c_str()) ).parentNode;
 	//	for( int frameIndex = 0; frameIndex < 3; ++frameIndex)
 	//	{
-	//		totalTime += myData[myCurrentFrame].Get( S2I(myTimerNames[index].c_str()) ).myTotalTime;
-	//		calls += myData[myCurrentFrame].Get( S2I(myTimerNames[index].c_str()) ).myTimesCalled;
-	//		selfTime += myData[myCurrentFrame].Get( S2I(myTimerNames[index].c_str()) ).mySelfTime;
+	//		totalTime += myData[myCurrentFrame].Get( S2I(m_pTimerNames[index].c_str()) ).myTotalTime;
+	//		calls += myData[myCurrentFrame].Get( S2I(m_pTimerNames[index].c_str()) ).myTimesCalled;
+	//		selfTime += myData[myCurrentFrame].Get( S2I(m_pTimerNames[index].c_str()) ).mySelfTime;
 	//	}
 	//	totalTime /= 3;
 	//	calls /= 3;
@@ -122,11 +122,11 @@ void Profiler::RemoveTimer()
 
 	//	if( parent.length() > 0)
 	//	{
-	//		aFont->printf(100, 840 + static_cast<float>(index) * 40.f, HGETEXT_LEFT, "Name: %s TotalTime: %f SelfTime: %f TimesCalled: %i Parent: %s",myTimerNames[index].c_str(), totalTime,selfTime , calls, parent.c_str() );
+	//		aFont->printf(100, 840 + static_cast<float>(index) * 40.f, HGETEXT_LEFT, "Name: %s TotalTime: %f SelfTime: %f TimesCalled: %i Parent: %s",m_pTimerNames[index].c_str(), totalTime,selfTime , calls, parent.c_str() );
 	//	}
 	//	else
 	//	{
-	//		aFont->printf(100, 840 + static_cast<float>(index) * 40.f, HGETEXT_LEFT, "Name: %s TotalTime: %f SelfTime: %f TimesCalled: %i ",myTimerNames[index].c_str(), totalTime,selfTime , calls  );
+	//		aFont->printf(100, 840 + static_cast<float>(index) * 40.f, HGETEXT_LEFT, "Name: %s TotalTime: %f SelfTime: %f TimesCalled: %i ",m_pTimerNames[index].c_str(), totalTime,selfTime , calls  );
 	//	}
 	//}
 //}

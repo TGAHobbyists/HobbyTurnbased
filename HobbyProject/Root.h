@@ -1,6 +1,7 @@
 #ifndef _ROOT_SINGLETON_H_
 #define _ROOT_SINGLETON_H_
 
+#include "Vector.h"
 
 class StateController;
 namespace Input
@@ -26,14 +27,17 @@ public:
 	void AttachMutexManager( MutexManager* aMutexManager );
 	MutexManager* GetMutexManager() const;
 
-	float myResolutionWidth;
-	float myResolutionHeight;
+
+	void setResolution( const float fWidth, const float fHeight );
+	const Vector2f& getResolution();
+	const Vector2f& getHalfRes();
 
 private:
 	Root();
 	static Root* ourInstance;
 
-
+	Vector2f m_vResolution;
+	Vector2f m_vHalfRes;
 
 	StateController* myStateController;
 	Input::InputWrapper* myInputWrapper;

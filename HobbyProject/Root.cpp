@@ -53,3 +53,17 @@ MutexManager* Root::GetMutexManager() const
 {
 	return myMutexManager;
 }
+
+void Root::setResolution( const float fWidth, const float fHeight )
+{
+	m_vResolution = Vector2f( fWidth, fHeight );
+	m_vHalfRes = m_vResolution * 0.5f;
+}
+const Vector2f& Root::getResolution()
+{
+	return m_vResolution;
+}
+const Vector2f& Root::getHalfRes()
+{
+	return m_vHalfRes;
+}

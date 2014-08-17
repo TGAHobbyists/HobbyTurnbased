@@ -27,8 +27,8 @@ private:
 	static Profiler* ourInstance;
 
 	CU::StaticArray< CU::HashTable< ProfilingData >, 3 > myData;
-	CU::Stack< ProfilingTimer* > myTimerStack;
-	CU::GrowingArray< std::string > myTimerNames;
+	CU::Stack< ProfilingTimer* > m_pTimerStack;
+	CU::GrowingArray< std::string > m_pTimerNames;
 
 	int myCurrentFrame;
 

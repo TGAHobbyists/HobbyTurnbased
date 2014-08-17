@@ -2,27 +2,27 @@
 
 CU::TimerManager::TimerManager(void)
 {
-	myTimers.Init(10,10);
+	m_pTimers.Init(10,10);
 }
 
 CU::TimerManager::~TimerManager(void)
 {
-	myTimers.DeleteAll();
+	m_pTimers.DeleteAll();
 }
 
 void CU::TimerManager::Update()
 {
 	myMasterTimer.Update(mySystemTimer.GetTime());
 
-	for (int timerIndex = 0; timerIndex < myTimers.Count(); timerIndex++)
+	for (int timerIndex = 0; timerIndex < m_pTimers.Count(); timerIndex++)
 	{
-		myTimers[timerIndex]->Update(myMasterTimer.GetDeltaTime());
+		m_pTimers[timerIndex]->Update(myMasterTimer.GetDeltaTime());
 	}
 }
 
 CU::Timer* CU::TimerManager::CreateTimer()
 {
 	Timer* newTimer = new Timer();
-	myTimers.Add(newTimer);
+	m_pTimers.Add(newTimer);
 	return newTimer;
 }
